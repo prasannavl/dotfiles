@@ -4,6 +4,5 @@
 # which inturn is sourced in /etc/profile.d/bash_completion.sh
 
 for file in ~/.bash_completion.d/*; do
-  [ -e "$file" ] || continue
-  source "$file"
+  [ -f "$file" ] && source "$file"
 done

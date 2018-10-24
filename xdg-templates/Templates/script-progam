@@ -1,0 +1,44 @@
+#!/bin/bash
+
+setup_vars() { 
+
+}
+
+main() {
+
+}
+
+run() {
+    init
+    if [ -z "$@" ]; then
+        main "$@"
+    else 
+        eval "$@"
+    fi;
+    cleanup
+}
+
+init() {
+    if [ -z "$_INIT" ]; then 
+        _INIT="1"
+    else
+        return 0
+    fi
+    set -Eeuo pipefail
+    _OPWD="$(pwd)"
+    trap cleanup 1 2 3 6 15 ERR
+    
+    # script dir
+    local dir="$(dirname "${BASH_SOURCE[0]}")"
+    _SPWD="$( cd "${dir}/" && pwd )"
+    cd "${_SPWD}"
+    if [ "$(type -t setup_vars)" == "function" ]; then
+        setup_vars
+    fi
+}
+
+cleanup() {
+    cd "$_OPWD"
+}
+
+run "$@"
