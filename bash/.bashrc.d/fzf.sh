@@ -7,7 +7,7 @@ export FZF_DEFAULT_COMMAND='fd "" --follow --hidden --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Pick from git install, or package manager install
-for x in ~/.fzf.bash /usr/share/fzf/shell/key-bindings.bash; do
+for x in $HOME/.fzf.bash /usr/share/fzf/shell/key-bindings.bash; do
 if [ -f "$x" ]; then 
     source "$x"
     break
