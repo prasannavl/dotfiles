@@ -7,31 +7,39 @@ if [ -n "$BASH_VERSION" ]; then
 fi
 
 # go-lang
-godir="$HOME/.local/opt/go"
 gopath_dir="$HOME/workspace/go"
-if [ -d "$godir" -a -d "$gopath_dir" ]; then
+if [ $(command -v go) -a -d "$gopath_dir" ]; then
     export GOPATH="$gopath_dir"
-    PATH="$godir/bin:$gopath_dir/bin:$PATH"
+    PATH="$gopath_dir/bin:$PATH"
 fi
+unset gopath_dir
 
 # yarn
-yarn_bin="$HOME/.yarn/bin"
-if [ -d "$yarn_bin" ]; then 
+
+if [ $(command -v yarn) ]; then
+    yarn_bin="$HOME/.yarn/bin"
     PATH="$yarn_bin:$PATH"
+    unset yarn_bin
+
+    yarn_modules="$HOME/.config/yarn/global/node_modules"
+    export NODE_PATH="$yarn_modules"
+    unset yarn_modules
 fi
 
-yarn_modules="$HOME/.config/yarn/global/node_modules"
-if [ -d "$yarn_modules" ]; then
-    export NODE_PATH="$yarn_modules"
-fi
 
 # android sdk
-export ANDROID_HOME=$HOME/Android/Sdk
-export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
-PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
+android_sdk=$HOME/Android/Sdk
+if [ -d "$android_sdk" ]; then
+    export ANDROID_HOME=$android_sdk
+    export ANDROID_NDK_HOME=$ANDROID_HOME/ndk-bundle
+    PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools
+fi
+unset android_sdk
 
 # rust, cargo
-PATH="$HOME/.cargo/bin:$PATH"
+if [ $(command -v cargo) ]; then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
 
 # private bin paths
 

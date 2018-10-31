@@ -6,6 +6,5 @@ export SSH_AUTH_SOCK
 
 exec i3
 
-
 # Alternatively, 
 #dbus-launch --exit-with-x11 i3

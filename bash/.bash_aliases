@@ -1,7 +1,11 @@
 
 alias cls='printf "\ec"' # \033
-alias vim='vimx'
-alias l='ls -AlhF --group-directories-first'
+alias la='ls -AlhF --group-directories-first'
+alias l='ls -CF'
+
+if [ $(command -v vimx) ]; then
+    alias vim='vimx'
+fi
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
