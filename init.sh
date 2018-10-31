@@ -2,7 +2,6 @@
 
 main() {
     init_stow
-	init_vim
 }
 
 init_stow() {
@@ -10,6 +9,12 @@ init_stow() {
     for x in ${stow_dirs}; do 
         stow -v ${x#\./}
     done
+}
+
+clean_vim() {
+    echo "cleaning vim: minpac"
+    rm -rf ~/.vim/pack/minpac
+    echo "done"
 }
 
 init_vim() {
