@@ -1,7 +1,7 @@
 # fzf
 
 # Let's exit if fasd isn't installed.
-if [ ! $(command -v fzf) ]; then exit 0; fi
+if [ ! $(command -v fzf) ]; then return 0; fi
 
 export FZF_DEFAULT_COMMAND='fd "" --follow --hidden --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"

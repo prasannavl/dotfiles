@@ -1,7 +1,7 @@
 # fasd opts
 
 # Let's exit if fasd isn't installed.
-if [ ! $(command -v fasd) ]; then exit 0; fi
+if [ ! $(command -v fasd) ]; then return 0; fi
 
 # Make sure the cache directory is created.
 # This has to be set in .fasdrc
