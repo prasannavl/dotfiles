@@ -37,8 +37,8 @@ fi
 unset android_sdk
 
 # rust, cargo
-if [ $(command -v cargo) ]; then
-    PATH="$HOME/.cargo/bin:$PATH"
+if [ -r $HOME/.cargo/env ]; then
+    source $HOME/.cargo/env
 fi
 
 # private bin paths
