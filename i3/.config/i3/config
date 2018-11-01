@@ -17,7 +17,7 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:Noto Sans Mono, DejaVu Sans Mono, FontAwesome 10
+font pango:Segoe UI, Noto Sans Mono, DejaVu Sans Mono, FontAwesome 9
 
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
@@ -171,7 +171,7 @@ bindsym $mod+r mode "resize"
 #}
 
 bar {
-    #font pango:DejaVu Sans Mono, FontAwesome 9
+    font pango: Noto Sans Mono, FontAwesome 10
     position top
     status_command i3status-rs ~/.config/i3/status.toml
     colors {
@@ -185,7 +185,7 @@ bar {
     }
 }
 
-exec --no-startup-id feh --bg-fill /usr/share/backgrounds/gnome/Fabric.jpg
+exec --no-startup-id feh --bg-fill /usr/share/backgrounds/fedora-workstation/corn.jpg  
 
 # Let's startup compositor
 exec --no-startup-id compton -b --config ~/.config/i3/compton.conf
@@ -228,7 +228,7 @@ bindsym $mod+m $volume_mute_toggle
 bindsym $mod+Shift+e exit
 
 # rofi stuff
-bindsym $mod+p exec "rofi -modi drun,run,ssh,windowcd,window -show"
+bindsym $mod+x exec "rofi -modi drun,run,ssh,windowcd,window -show"
 bindsym $mod+d exec "rofi -combi-modi drun,run,ssh,windowcd,window -show combi -modi combi"
 bindsym $mod+t exec "rofi -modi window,drun,run,ssh,windowcd -show"
 
