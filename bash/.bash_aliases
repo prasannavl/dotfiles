@@ -14,3 +14,5 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 alias cat-highlight='highlight -O ansi --force'
 alias cat-source-highlight='source-highlight -f esc -o STDOUT -i'
 
+alias xo=xdg-open
+

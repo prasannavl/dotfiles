@@ -58,4 +58,101 @@ set skip-completed-text on
 "\e[B": history-search-forward
 
 
+#===
+#REFERENCE
+#===
 
+### Movement
+
+# beginning-of-line (C-a)
+# end-of-line (C-e)
+# forward-char (C-f)
+# backward-char (C-b)
+# forward-word (M-f)
+# backward-word (M-b)
+# clear-screen (C-l)
+
+### Changing text
+
+# end-of-file (usually C-d)
+# delete-char (C-d)
+# backward-delete-char (Rubout)
+# quoted-insert (C-q or C-v)
+# self-insert (a, b, A, 1, !, …)
+# transpose-chars (C-t)
+# transpose-words (M-t)
+# upcase-word (M-u)
+# downcase-word (M-l)
+# capitalize-word (M-c)
+
+### Killing and yanking
+
+# kill-line (C-k)
+# backward-kill-line (C-x Rubout)
+# unix-line-discard (C-u)
+# kill-word (M-d)
+# backward-kill-word (M-DEL)
+# unix-word-rubout (C-w)
+# yank (C-y)
+# yank-pop (M-y) [when precended by yank/yank-pop]
+
+### History
+
+# previous-history (C-p)
+# next-history (C-n)
+# beginning-of-history (M-<)
+# end-of-history (M->)
+# reverse-search-history (C-r)
+# forward-search-history (C-s)
+# non-incremental-reverse-search-history (M-p)
+# non-incremental-forward-search-history (M-n)
+# yank-nth-arg (M-C-y)
+# yank-last-arg (M-. or M-_)
+
+### Completion
+
+# complete (TAB)
+# possible-completions (M-?)
+# insert-completions (M-*)
+# complete-filename (M-/)
+# possible-filename-completions (C-x /)
+# complete-username (M-~)
+# possible-username-completions (C-x ~)
+# complete-variable (M-$)
+# possible-variable-completions (C-x $)
+# complete-hostname (M-@)
+# possible-hostname-completions (C-x @)
+# complete-command (M-!)
+# possible-command-completions (C-x !)
+# dynamic-complete-history (M-TAB)
+# complete-into-braces (M-{)
+
+### Macros
+
+# start-kbd-macro (C-x ()
+# end-kbd-macro (C-x ))
+# call-last-kbd-macro (C-x e)
+
+### Misc
+
+# re-read-init-file (C-x C-r)
+# abort (C-g)
+# do-uppercase-version (M-a, M-b, M-x, …)
+# prefix-meta (ESC)
+# undo (C-_ or C-x C-u)
+# revert-line (M-r)
+# tilde-expand (M-&)
+# set-mark (C-@)
+# exchange-point-and-mark (C-x C-x)
+# character-search (C-])
+# character-search-backward (M-C-])
+# insert-comment (M-#)
+# glob-complete-word (M-g)
+# glob-expand-word (C-x *)
+# glob-list-expansions (C-x g)
+# display-shell-version (C-x C-v)
+# shell-expand-line (M-C-e)
+# history-expand-line (M-^)
+# insert-last-argument (M-. or M-_)
+# operate-and-get-next (C-o)
+# edit-and-execute-command (C-xC-e)
