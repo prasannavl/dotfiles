@@ -32,8 +32,10 @@ command! PackStatus call PackInit() | call minpac#status()
 let g:airline_theme='minimalist'
 colorscheme minimalist
 syntax on
-hi Normal ctermbg=none
-hi Visual guifg=#192224 guibg=#F9F9FF guisp=#F9F9FF gui=NONE ctermfg=235 ctermbg=189 cterm=NONE
+hi LineNr ctermbg=NONE
+hi NonText ctermbg=NONE
+hi Normal ctermbg=NONE
+hi Visual ctermfg=235 ctermbg=189 cterm=NONE guifg=#192224 guibg=#F9F9FF guisp=#F9F9FF gui=NONE
 
 let vim_session_dir=expand("~/.vim/session/")
 
