@@ -19,6 +19,7 @@ clean_vim() {
 
 init_vim() {
 	git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
+    [ $(command -v vim) ] && vim +PackUpdate
 }
 
 run() {

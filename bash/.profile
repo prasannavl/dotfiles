@@ -17,10 +17,12 @@ unset gopath_dir
 # yarn
 
 if [ $(command -v yarn) ]; then
+    # PATH="$(yarn --offline bin):$PATH"
     yarn_bin="$HOME/.yarn/bin"
     PATH="$yarn_bin:$PATH"
     unset yarn_bin
 
+    # export NODE_PATH="$(yarn --offline global dir)/node_modules"
     yarn_modules="$HOME/.config/yarn/global/node_modules"
     export NODE_PATH="$yarn_modules"
     unset yarn_modules
