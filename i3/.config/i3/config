@@ -192,7 +192,7 @@ bar {
     }
 }
 
-set $bg /usr/share/backgrounds/f29/default/wide/f29.png
+set $bg ~/.config/i3/backgrounds/f29/default/wide/f29.png
 exec --no-startup-id feh --bg-fill $bg
 
 # Let's startup compositor
