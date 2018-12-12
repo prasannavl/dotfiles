@@ -1,9 +1,17 @@
 # .bashrc
 
-# Source global definitions
+# Source global definitions on redhat based
+# systems
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
+
+# If not running interactively, quit so that
+# we stay consistent on debian and redhat systems
+case $- in
+    *i*) ;;
+      *) return;;
+esac
 
 # User specific aliases and functions
 
