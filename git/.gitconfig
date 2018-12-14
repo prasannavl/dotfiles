@@ -4,5 +4,5 @@
 [core]
 	autocrlf = input
 [credential]
-	helper = /usr/bin/env git-credential-libsecret
+	helper = /usr/libexec/git-core/git-credential-libsecret
 

@@ -192,7 +192,7 @@ bar {
     }
 }
 
-set $bg ~/.config/i3/backgrounds/encounter.jpg
+set $bg ~/.config/i3/backgrounds/f29/wide/f29.png
 exec --no-startup-id feh --bg-fill $bg
 
 # Let's startup compositor
