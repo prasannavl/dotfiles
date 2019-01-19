@@ -8,10 +8,10 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
-alias ll='ls -l --color=auto'
+alias ll='ls -lh --color=auto'
 alias la='ls -AlhF --group-directories-first --color=auto'
-alias l='ls -CF --color=auto'
-alias l.='ls -d .* --color=auto'
+alias l='ls -CFh --color=auto'
+alias l.='ls -dh .* --color=auto'
 
 alias xzgrep='xzgrep --color=auto'
 alias xzegrep='xzegrep --color=auto'
@@ -19,6 +19,7 @@ alias xzfgrep='xzfgrep --color=auto'
 alias zgrep='zgrep --color=auto'
 alias zfgrep='zfgrep --color=auto'
 alias zegrep='zegrep --color=auto'
+alias tree='tree -ah'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -29,6 +30,9 @@ alias cat-source-highlight='source-highlight -f esc -o STDOUT -i'
 
 alias xo=xdg-open
 alias docker="sudo docker"
+alias iotop="sudo iotop"
+
+alias iostata="iostat -xds sda 1"
 
 sublime_text="/opt/sublime_text/sublime_text"
 if [ -x "$sublime_text" ]; then

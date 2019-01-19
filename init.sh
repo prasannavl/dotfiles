@@ -1,5 +1,10 @@
 #!/bin/bash
 
+setup_vars() {
+    VIM_MINPAC_DIR=${HOME}/.vim/pack/minpac
+    TMUX_TPM_DIR="${HOME}/.tmux/plugins/tpm"
+}
+
 main() {
     init_stow
 }
@@ -13,13 +18,23 @@ init_stow() {
 
 clean_vim() {
     echo "cleaning vim: minpac"
-    rm -rf ~/.vim/pack/minpac
+    rm -rf ${VIM_MINPAC_DIR}
     echo "done"
 }
 
 init_vim() {
-    git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
+    git clone https://github.com/k-takata/minpac.git ${VIM_MINPAC_DIR}/opt/minpac
     [ $(command -v vim) ] && vim +PackUpdate
+}
+
+clean_tmux() {
+    echo "cleaning tmux tpm"
+    rm -rf "${TMUX_TPM_DIR}"
+    echo "done"
+}
+
+init_tmux() {
+    git clone https://github.com/tmux-plugins/tpm "${TMUX_TPM_DIR}"
 }
 
 run() {
