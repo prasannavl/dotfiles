@@ -19,7 +19,9 @@ alias xzfgrep='xzfgrep --color=auto'
 alias zgrep='zgrep --color=auto'
 alias zfgrep='zfgrep --color=auto'
 alias zegrep='zegrep --color=auto'
+
 alias tree='tree -ah'
+alias diffy='diff -y --color'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert

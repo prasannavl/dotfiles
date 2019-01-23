@@ -35,6 +35,7 @@ clean_tmux() {
 
 init_tmux() {
     git clone https://github.com/tmux-plugins/tpm "${TMUX_TPM_DIR}"
+    $TMUX_TPM_DIR/scripts/install_plugins.sh
 }
 
 run() {
