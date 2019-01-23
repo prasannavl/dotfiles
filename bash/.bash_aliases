@@ -22,6 +22,10 @@ alias zegrep='zegrep --color=auto'
 
 alias tree='tree -ah'
 alias diffy='diff -y --color'
+alias iostatw='iostat -xdszh 1'
+alias free='free -h'
+alias df='df -h'
+alias du='du -h'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -33,8 +37,6 @@ alias cat-source-highlight='source-highlight -f esc -o STDOUT -i'
 alias xo=xdg-open
 alias docker="sudo docker"
 alias iotop="sudo iotop"
-
-alias iostata="iostat -xds sda 1"
 
 sublime_text="/opt/sublime_text/sublime_text"
 if [ -x "$sublime_text" ]; then
