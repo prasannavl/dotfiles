@@ -94,7 +94,7 @@ set skip-completed-text on
 # backward-kill-word (M-DEL)
 # unix-word-rubout (C-w)
 # yank (C-y)
-# yank-pop (M-y) [when precended by yank/yank-pop]
+# yank-pop (M-y) [when preceded by yank/yank-pop]
 
 ### History
 
