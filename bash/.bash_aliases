@@ -36,7 +36,9 @@ alias cat-highlight='highlight -O ansi --force'
 alias cat-source-highlight='source-highlight -f esc -o STDOUT -i'
 
 alias xo=xdg-open
+
 alias docker="sudo docker"
+alias lxc="sudo lxc"
 alias iotop="sudo iotop"
 
 sublime_text="/opt/sublime_text/sublime_text"
