@@ -5,7 +5,7 @@ function mkcd() {
 }
 
 function c() {
-    bc <<< "scale=20;$@"
+    bc <<<"scale=20;$@"
 }
 
 function wttr() {
