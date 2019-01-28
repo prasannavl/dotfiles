@@ -4,6 +4,10 @@ function mkcd() {
     mkdir -p "$@" && cd "$@"
 }
 
+function c() {
+    bc <<< "scale=20;$@"
+}
+
 function wttr() {
     curl http://wttr.in/$@
 }

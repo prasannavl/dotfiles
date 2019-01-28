@@ -20,13 +20,11 @@ alias zgrep='zgrep --color=auto'
 alias zfgrep='zfgrep --color=auto'
 alias zegrep='zegrep --color=auto'
 
-alias tree='tree -ah'
+alias t='tree -ah'
 alias diffy='diff -y --color'
 alias iostatw='iostat -xdszh 1'
-alias free='free -h'
-alias df='df -h'
-alias du='du -h'
 alias pg='pgrep -af'
+alias o=xdg-open
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -34,8 +32,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 alias cat-highlight='highlight -O ansi --force'
 alias cat-source-highlight='source-highlight -f esc -o STDOUT -i'
-
-alias xo=xdg-open
 
 alias docker="sudo docker"
 alias lxc="sudo lxc"
