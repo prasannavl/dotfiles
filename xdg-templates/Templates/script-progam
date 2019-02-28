@@ -12,29 +12,32 @@ run() {
     init
     if [ -z "$@" ]; then
         main "$@"
-    else
+    else 
         eval "$@"
-    fi
+    fi;
     cleanup
 }
 
 init() {
-    if [ -z "$_INIT" ]; then
+    if [ -z "$_INIT" ]; then 
         _INIT="1"
     else
         return 0
     fi
-    set -Eeuo pipefail
-    _OPWD="$(pwd)"
-    trap cleanup 1 2 3 6 15 ERR
+    ensure_script_dir
+    set_trap
+    cd "$_SPWD"
+}
 
-    # script dir
+set_trap() {
+    set -Eeuo pipefail
+    trap cleanup 1 2 3 6 15 ERR
+}
+
+ensure_script_dir() {
+    _OPWD="$(pwd)"
     local dir="$(dirname "${BASH_SOURCE[0]}")"
-    _SPWD="$(cd "${dir}/" && pwd)"
-    cd "${_SPWD}"
-    if [ "$(type -t setup_vars)" == "function" ]; then
-        setup_vars
-    fi
+    _SPWD="$( cd "${dir}/" && pwd )"
 }
 
 cleanup() {
