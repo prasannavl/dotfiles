@@ -1,8 +1,11 @@
 [user]
 	name = Prasanna Loganathar
 	email = pvl@prasannavl.com
+	signingkey = CCCAC34A557E4B39
 [core]
 	autocrlf = input
 [credential]
 	helper = /usr/bin/env git-credential-libsecret
 
+[commit]
+	gpgsign = true
