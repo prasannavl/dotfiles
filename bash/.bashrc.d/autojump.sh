@@ -1,4 +1,4 @@
 # autojump
-if [ -r /usr/share/autojump/autojump.sh ]; then
+if [[ -r /usr/share/autojump/autojump.sh ]]; then
     source /usr/share/autojump/autojump.sh
 fi

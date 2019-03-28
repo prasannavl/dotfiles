@@ -9,8 +9,10 @@ main() {
 }
 
 run() {
-    init
-    if [ -z "$@" ]; then
+    ensure_script_dir
+    set_trap
+    cd "$_SPWD"
+    if [[ -z "$@" ]]; then
         main "$@"
     else 
         eval "$@"
@@ -18,26 +20,15 @@ run() {
     cleanup
 }
 
-init() {
-    if [ -z "$_INIT" ]; then 
-        _INIT="1"
-    else
-        return 0
-    fi
-    ensure_script_dir
-    set_trap
-    cd "$_SPWD"
+ensure_script_dir() {
+    _OPWD="$(pwd)"
+    local dir="$(dirname "${BASH_SOURCE[0]}")"
+    _SPWD="$( cd "${dir}/" && pwd )"
 }
 
 set_trap() {
     set -Eeuo pipefail
     trap cleanup 1 2 3 6 15 ERR
-}
-
-ensure_script_dir() {
-    _OPWD="$(pwd)"
-    local dir="$(dirname "${BASH_SOURCE[0]}")"
-    _SPWD="$( cd "${dir}/" && pwd )"
 }
 
 cleanup() {

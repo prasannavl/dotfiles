@@ -2,7 +2,7 @@
 
 # Source global definitions on redhat based
 # systems
-if [ -f /etc/bashrc ]; then
+if [[ -f /etc/bashrc ]]; then
 	. /etc/bashrc
 fi
 
@@ -16,10 +16,10 @@ esac
 # User specific aliases and functions
 
 for file in ~/.bashrc.d/*.sh; do
-  [ -r "$file" ] || continue
+  [[ -r "$file" ]] || continue
   source "$file"
 done
 
-[ -r ~/.bash_functions ] && source ~/.bash_functions
-[ -r ~/.bash_aliases ] && source ~/.bash_aliases
+[[ -r ~/.bash_functions ]] && source ~/.bash_functions
+[[ -r ~/.bash_aliases ]] && source ~/.bash_aliases
 

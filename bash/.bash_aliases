@@ -37,7 +37,7 @@ alias lxc="sudo lxc"
 alias iotop="sudo iotop"
 
 sublime_text="/opt/sublime_text/sublime_text"
-if [ -x "$sublime_text" ]; then
+if [[ -x "$sublime_text" ]]; then
     alias sublime="$sublime_text"
 fi
 unset sublime_text

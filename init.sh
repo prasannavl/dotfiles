@@ -24,7 +24,7 @@ clean_vim() {
 
 init_vim() {
     git clone https://github.com/k-takata/minpac.git ${VIM_MINPAC_DIR}/opt/minpac
-    [ $(command -v vim) ] && vim +PackUpdate
+    [[ $(command -v vim) ]] && vim +PackUpdate
 }
 
 clean_tmux() {
@@ -39,32 +39,27 @@ init_tmux() {
 }
 
 run() {
-    init
-    if [ -z "$@" ]; then
+    ensure_script_dir
+    set_trap
+    setup_vars
+    cd "$_SPWD"
+    if [[ -z "$@" ]]; then
         main "$@"
-    else
+    else 
         eval "$@"
-    fi
+    fi;
     cleanup
 }
 
-init() {
-    if [ -z "$_INIT" ]; then
-        _INIT="1"
-    else
-        return 0
-    fi
-    set -Eeuo pipefail
+ensure_script_dir() {
     _OPWD="$(pwd)"
-    trap cleanup 1 2 3 6 15 ERR
-
-    # script dir
     local dir="$(dirname "${BASH_SOURCE[0]}")"
-    _SPWD="$(cd "${dir}/" && pwd)"
-    cd "${_SPWD}"
-    if [ "$(type -t setup_vars)" == "function" ]; then
-        setup_vars
-    fi
+    _SPWD="$( cd "${dir}/" && pwd )"
+}
+
+set_trap() {
+    set -Eeuo pipefail
+    trap cleanup 1 2 3 6 15 ERR
 }
 
 cleanup() {
