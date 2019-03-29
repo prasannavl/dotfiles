@@ -1,0 +1,44 @@
+#!/bin/bash
+
+set -Eeuo pipefail
+
+setup_vars() {
+
+}
+
+run() {
+
+}
+
+main() {
+    ensure_script_dir
+    trap cleanup 1 2 3 6 15 ERR
+    cd "$_SPWD"
+    setup_vars
+    local commands=("run")
+    for x in "${commands[@]}"; do 
+        if [[ "$x" == "${1-}" ]]; then
+            eval "$@"
+            cleanup
+            return 0
+        fi
+    done
+    echo "Usage: $0 <commands>"
+    echo ""
+    echo "Commands:"
+    echo "${commands[@]}"
+    cleanup
+    return 1
+}
+
+ensure_script_dir() {
+    _OPWD="$(pwd)"
+    local dir="$(dirname "${BASH_SOURCE[0]}")"
+    _SPWD="$( cd "${dir}/" && pwd )"
+}
+
+cleanup() {
+    cd "$_OPWD"
+}
+
+main "$@"
