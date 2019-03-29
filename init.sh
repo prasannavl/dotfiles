@@ -1,11 +1,13 @@
 #!/bin/bash
 
+set -Eeuo pipefail
+
 setup_vars() {
     VIM_MINPAC_DIR=${HOME}/.vim/pack/minpac
     TMUX_TPM_DIR="${HOME}/.tmux/plugins/tpm"
 }
 
-main() {
+run() {
     init_stow
 }
 
@@ -38,13 +40,13 @@ init_tmux() {
     $TMUX_TPM_DIR/scripts/install_plugins.sh
 }
 
-run() {
+main() {
     ensure_script_dir
-    set_trap
+    trap cleanup 1 2 3 6 15 ERR
     setup_vars
     cd "$_SPWD"
     if [[ -z "$@" ]]; then
-        main "$@"
+        run "$@"
     else 
         eval "$@"
     fi;
@@ -57,13 +59,8 @@ ensure_script_dir() {
     _SPWD="$( cd "${dir}/" && pwd )"
 }
 
-set_trap() {
-    set -Eeuo pipefail
-    trap cleanup 1 2 3 6 15 ERR
-}
-
 cleanup() {
     cd "$_OPWD"
 }
 
-run "$@"
+main "$@"
