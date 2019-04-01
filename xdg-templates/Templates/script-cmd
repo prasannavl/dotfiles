@@ -16,7 +16,7 @@ main() {
     cd "$_SPWD"
     setup_vars
     local commands=("run")
-    for x in "${commands[@]}"; do 
+    for x in "${commands[@]}"; do
         if [[ "$x" == "${1-}" ]]; then
             eval "$@"
             cleanup
@@ -34,7 +34,7 @@ main() {
 ensure_script_dir() {
     _OPWD="$(pwd)"
     local dir="$(dirname "${BASH_SOURCE[0]}")"
-    _SPWD="$( cd "${dir}/" && pwd )"
+    _SPWD="$(cd "${dir}/" && pwd)"
 }
 
 cleanup() {
