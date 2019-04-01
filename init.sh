@@ -47,16 +47,16 @@ main() {
     cd "$_SPWD"
     if [[ -z "$@" ]]; then
         run "$@"
-    else 
+    else
         eval "$@"
-    fi;
+    fi
     cleanup
 }
 
 ensure_script_dir() {
     _OPWD="$(pwd)"
     local dir="$(dirname "${BASH_SOURCE[0]}")"
-    _SPWD="$( cd "${dir}/" && pwd )"
+    _SPWD="$(cd "${dir}/" && pwd)"
 }
 
 cleanup() {

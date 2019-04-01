@@ -18,7 +18,6 @@ ${error}${r}\\n\$ "
 
 unset r b fwhite fblack fgray fgreen fblue fred error
 
-
 # bdir="\[\033[48;5;237m\]"
 # fdir="\[\033[38;5;252m\]"
 

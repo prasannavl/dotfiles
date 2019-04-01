@@ -1,5 +1,4 @@
-
-# environment for interactive bash session 
+# environment for interactive bash session
 
 export EDITOR="vi -e"
 export VISUAL=vim

@@ -8,10 +8,10 @@ if [[ ! $(command -v fasd) ]]; then return 0; fi
 fasd_cache_dir="$HOME/.cache/fasd"
 [[ -d "$fasd_cache_dir" ]] || mkdir -p "$fasd_cache_dir"
 
-# init 
+# init
 fasd_cache="$fasd_cache_dir/fasd-init-bash"
 if [[ "$(command -v fasd)" -nt "$fasd_cache" || ! -s "$fasd_cache" ]]; then
-  fasd --init posix-alias bash-hook bash-ccomp bash-ccomp-install >| "$fasd_cache"
+    fasd --init posix-alias bash-hook bash-ccomp bash-ccomp-install >|"$fasd_cache"
 fi
 
 source "$fasd_cache"
