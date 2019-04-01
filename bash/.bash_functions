@@ -32,14 +32,14 @@ function __get_cargo_bin_crates() {
 
 function cargo_init_bin() {
     local name=${1:?name not set}
-    cargo init --bin "$name" && \
-    cd "$name" && \
-    cargo add $(__get_cargo_bin_crates) $(__get_cargo_lib_crates) 
+    cargo init --bin "$name" &&
+        cd "$name" &&
+        cargo add $(__get_cargo_bin_crates) $(__get_cargo_lib_crates)
 }
 
 function cargo_init_lib() {
     local name=${1:?name not set}
-    cargo init --lib "$name" && \
-    cd "$name" && \
-    cargo add $(__get_cargo_lib_crates)
+    cargo init --lib "$name" &&
+        cd "$name" &&
+        cargo add $(__get_cargo_lib_crates)
 }

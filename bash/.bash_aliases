@@ -41,4 +41,3 @@ if [[ -x "$sublime_text" ]]; then
     alias sublime="$sublime_text"
 fi
 unset sublime_text
-
