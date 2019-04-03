@@ -19,7 +19,9 @@ main() {
     for x in "${commands[@]}"; do
         local cmd="${1-}"
         if [[ "$x" == "${cmd}" ]]; then
-            shift && ${cmd//-/_} "$@"
+            shift
+            setup_vars
+            ${cmd//-/_} "$@"
             cleanup
             return 0
         fi
