@@ -4,11 +4,7 @@ set -Eeuo pipefail
 
 setup_vars() {
     VIM_MINPAC_DIR=${HOME}/.vim/pack/minpac
-    TMUX_TPM_DIR="${HOME}/.tmux/plugins/tpm"
-}
-
-run() {
-    init_stow
+    TMUX_TPM_DIR=${HOME}/.tmux/plugins/tpm
 }
 
 init_stow() {
@@ -41,26 +37,50 @@ init_tmux() {
 }
 
 main() {
-    ensure_script_dir
-    trap cleanup 1 2 3 6 15 ERR
-    setup_vars
-    cd "$_SPWD"
-    if [[ -z "$@" ]]; then
-        run "$@"
-    else
-        eval "$@"
+    COMMANDS=("run init-stow")
+    COMMANDS+=("init-vim" "clean-vim")
+    COMMANDS+=("init-tmux" "clean-tmux")
+
+    if [[ "${1-}" == "-h" || "${1-}" == "--help" ]]; then
+        usage
+        return 0
     fi
+
+    ensure_script_dir
+    cd "$_SCRIPT_DIR"
+    trap cleanup 1 2 3 6 15 ERR
+
+    for x in "${COMMANDS[@]}"; do
+        local cmd="${1-}"
+        if [[ "$x" == "${cmd}" ]]; then
+            shift
+            setup_vars
+            ${cmd//-/_} "$@"
+            cleanup
+            return 0
+        fi
+    done
+
+    usage
     cleanup
+    return 1
+}
+
+usage() {
+    echo "Usage: $0 <command>"
+    echo ""
+    echo "Commands:"
+    echo "${COMMANDS[@]}"
 }
 
 ensure_script_dir() {
-    _OPWD="$(pwd)"
+    _WORKING_DIR="$(pwd)"
     local dir="$(dirname "${BASH_SOURCE[0]}")"
-    _SPWD="$(cd "${dir}/" && pwd)"
+    _SCRIPT_DIR="$(cd "${dir}/" && pwd)"
 }
 
 cleanup() {
-    cd "$_OPWD"
+    cd "$_WORKING_DIR"
 }
 
 main "$@"
