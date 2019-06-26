@@ -33,11 +33,11 @@ clean_tmux() {
 
 init_tmux() {
     git clone https://github.com/tmux-plugins/tpm "${TMUX_TPM_DIR}"
-    $TMUX_TPM_DIR/scripts/install_plugins.sh
+    TMUX_PLUGIN_MANAGER_PATH=$TMUX_TPM_DIR $TMUX_TPM_DIR/scripts/install_plugins.sh
 }
 
 main() {
-    COMMANDS=("run init-stow")
+    COMMANDS=("init-stow")
     COMMANDS+=("init-vim" "clean-vim")
     COMMANDS+=("init-tmux" "clean-tmux")
 
