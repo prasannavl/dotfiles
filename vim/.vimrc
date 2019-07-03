@@ -57,6 +57,8 @@ set ignorecase
 set smartcase
 set incsearch
 set hlsearch
+set shiftwidth=4
+set expandtab
 
 " Use gui clipboard only when running as gui (gvim, etc).
 " Otherwise, simply be explict about what registers to use.
