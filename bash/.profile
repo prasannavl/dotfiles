@@ -13,13 +13,15 @@ if [[ $(command -v go) && -d "$gopath_dir" ]]; then
 fi
 unset gopath_dir
 
-# yarn
-if [[ $(command -v yarn) ]]; then
-    # PATH="$(yarn --offline bin):$PATH"
-    yarn_bin="$HOME/.yarn/bin"
-    PATH="$yarn_bin:$PATH"
-    unset yarn_bin
+# npm, yarn
+if [[ $(command -v npm) ]]; then
+    # npm config set prefix $HOME/.npm
+    npm_bin="$HOME/.npm/bin"
+    PATH="$npm_bin:$PATH"
+    unset npm_bin
+fi
 
+if [[ $(command -v yarn) ]]; then
     # export NODE_PATH="$(yarn --offline global dir)/node_modules"
     yarn_modules="$HOME/.config/yarn/global/node_modules"
     export NODE_PATH="$yarn_modules"
@@ -27,8 +29,8 @@ if [[ $(command -v yarn) ]]; then
 fi
 
 # rust, cargo
-if [[ -r $HOME/.cargo/env ]]; then
-    source $HOME/.cargo/env
+if [[ -r "$HOME/.cargo/env" ]]; then
+    source "$HOME/.cargo/env"
 fi
 
 # private bin paths
