@@ -91,9 +91,9 @@ endif
 nmap <S-Enter> O<Esc>
 nmap <CR> o<Esc>
 
-" Setup file explorer shortcuts
-map <C-n> :NERDTreeToggle<CR>
-map <C-p> :Files<CR>
+" External shortcuts
+" map <C-n> :NERDTreeToggle<CR>
+map <C-p> :Files<CR> "fzf
 
 " Switch cursor indication for insert mode/normal mode
 " autocmd InsertEnter,InsertLeave * set cul!
