@@ -1,46 +1,45 @@
-function! PackInit() abort
-  " Setup minpac
-  packadd minpac
-  call minpac#init()
-  call minpac#add('k-takata/minpac', {'type': 'opt'})
+function VimPlugInit() 
+  " auto install plug
+  if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  endif
 
-  " Additional plugins here.
+  " Plugins will be downloaded under the specified directory.
+  call plug#begin('~/.vim/plugged')
+
   " very basic
-  call minpac#add('tpope/vim-sensible')
+  Plug 'tpope/vim-sensible'
   " surround cs/ds
-  call minpac#add('tpope/vim-surround')
+  Plug 'tpope/vim-surround'
   " git plugins
-  call minpac#add('tpope/vim-fugitive')
-  call minpac#add('airblade/vim-gitgutter')
+  Plug 'tpope/vim-fugitive'
+  Plug 'airblade/vim-gitgutter'
   " theme
-  call minpac#add('vim-airline/vim-airline')
-  call minpac#add('vim-airline/vim-airline-themes')
-  call minpac#add('dikiaap/minimalist')
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'dikiaap/minimalist'
   " comments with gc/gcc
-  call minpac#add('tpope/vim-commentary')
+  Plug 'tpope/vim-commentary'
   " fzf stuff
-  call minpac#add('junegunn/fzf.vim')
+  Plug 'junegunn/fzf.vim'
   " Unix helpers Find, Delete, Mkdir, Move, Clocate, Chmod, SudoWrite,
   " SudoEdit, etc
-  call minpac#add('tpope/vim-eunuch')
+  Plug 'tpope/vim-eunuch'
   " emmet helpers - Ctrl +y
-  call minpac#add('mattn/emmet-vim')
+  Plug 'mattn/emmet-vim'
   " misc
-  call minpac#add('ervandew/supertab')
-  call minpac#add('mhinz/vim-startify')
+  Plug 'ervandew/supertab'
+  Plug 'mhinz/vim-startify'
+
+  call plug#end()
 endfunction
 
-" Plugin settings here.
-
-" Define user commands for updating/cleaning the plugins.
-" Each of them calls PackInit() to load minpac and register
-" the information of plugins, then performs the task.
-command! PackUpdate call PackInit() | call minpac#update('', {'do': 'call minpac#status()'})
-command! PackClean  call PackInit() | call minpac#clean()
-command! PackStatus call PackInit() | call minpac#status()
+call VimPlugInit()
 
 let g:airline_theme='minimalist'
-colorscheme minimalist
+silent! colorscheme minimalist
 syntax on
 
 " Clear the background so that it works
@@ -104,7 +103,7 @@ nmap <CR> o<Esc>
 
 " External shortcuts
 " map <C-n> :NERDTreeToggle<CR>
-map <C-p> :Files<CR> "fzf
+map <C-p> :Files<CR> " fzf
 
 " Switch cursor indication for insert mode/normal mode
 " autocmd InsertEnter,InsertLeave * set cul!

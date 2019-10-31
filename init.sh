@@ -3,7 +3,6 @@
 set -Eeuo pipefail
 
 setup_vars() {
-    VIM_MINPAC_DIR=${HOME}/.vim/pack/minpac
     TMUX_TPM_DIR=${HOME}/.tmux/plugins/tpm
 }
 
@@ -14,15 +13,9 @@ init_stow() {
     done
 }
 
-clean_vim() {
-    echo "cleaning vim: minpac"
-    rm -rf ${VIM_MINPAC_DIR}
-    echo "done"
-}
-
-init_vim() {
-    git clone https://github.com/k-takata/minpac.git ${VIM_MINPAC_DIR}/opt/minpac
-    [[ $(command -v vim) ]] && vim +PackUpdate
+init_tmux() {
+    git clone https://github.com/tmux-plugins/tpm "${TMUX_TPM_DIR}"
+    TMUX_PLUGIN_MANAGER_PATH=$TMUX_TPM_DIR $TMUX_TPM_DIR/scripts/install_plugins.sh
 }
 
 clean_tmux() {
@@ -31,14 +24,8 @@ clean_tmux() {
     echo "done"
 }
 
-init_tmux() {
-    git clone https://github.com/tmux-plugins/tpm "${TMUX_TPM_DIR}"
-    TMUX_PLUGIN_MANAGER_PATH=$TMUX_TPM_DIR $TMUX_TPM_DIR/scripts/install_plugins.sh
-}
-
 main() {
     COMMANDS=("init-stow")
-    COMMANDS+=("init-vim" "clean-vim")
     COMMANDS+=("init-tmux" "clean-tmux")
 
     if [[ "${1-}" == "-h" || "${1-}" == "--help" ]]; then
