@@ -47,7 +47,7 @@ if [[ -d "$HOME/bin" ]]; then
     PATH="$HOME/bin:$PATH"
 fi
 
-export PATH
 
+export PATH
 
 export PATH="$HOME/.cargo/bin:$PATH"
