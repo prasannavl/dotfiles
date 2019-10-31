@@ -5,17 +5,27 @@ function! PackInit() abort
   call minpac#add('k-takata/minpac', {'type': 'opt'})
 
   " Additional plugins here.
+  " very basic
   call minpac#add('tpope/vim-sensible')
+  " surround cs/ds
   call minpac#add('tpope/vim-surround')
+  " git plugins
   call minpac#add('tpope/vim-fugitive')
+  call minpac#add('airblade/vim-gitgutter')
+  " theme
   call minpac#add('vim-airline/vim-airline')
   call minpac#add('vim-airline/vim-airline-themes')
-  call minpac#add('tpope/vim-commentary')
   call minpac#add('dikiaap/minimalist')
+  " comments with gc/gcc
+  call minpac#add('tpope/vim-commentary')
+  " fzf stuff
   call minpac#add('junegunn/fzf.vim')
+  " Unix helpers Find, Delete, Mkdir, Move, Clocate, Chmod, SudoWrite,
+  " SudoEdit, etc
   call minpac#add('tpope/vim-eunuch')
+  " emmet helpers - Ctrl +y
   call minpac#add('mattn/emmet-vim')
-  call minpac#add('airblade/vim-gitgutter')
+  " misc
   call minpac#add('ervandew/supertab')
   call minpac#add('mhinz/vim-startify')
 endfunction
