@@ -11,7 +11,6 @@ function! PackInit() abort
   call minpac#add('vim-airline/vim-airline')
   call minpac#add('vim-airline/vim-airline-themes')
   call minpac#add('tpope/vim-commentary')
-  call minpac#add('scrooloose/nerdtree')
   call minpac#add('dikiaap/minimalist')
   call minpac#add('junegunn/fzf.vim')
   call minpac#add('tpope/vim-eunuch')
@@ -52,13 +51,29 @@ execute "set directory=".vim_session_dir.",/tmp/"
 execute "set undodir=".vim_session_dir.",/tmp/"
 
 " Some sensible defaults
-set mouse=vi
+set ttymouse=xterm2
+set mouse=a "a, vi
 set ignorecase
 set smartcase
 set incsearch
 set hlsearch
 set shiftwidth=4
 set expandtab
+
+
+" netrw
+let g:netrw_banner = 1
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 20
+
+" Autoload project drawer
+"
+" augroup ProjectDrawer
+"     autocmd!
+"     autocmd VimEnter * :Vexplore
+" augroup END
 
 " Use gui clipboard only when running as gui (gvim, etc).
 " Otherwise, simply be explict about what registers to use.
