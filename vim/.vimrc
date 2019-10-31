@@ -1,4 +1,4 @@
-function VimPlugInit() 
+function s:VimPlugInit() 
   " auto install plug
   if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -22,8 +22,6 @@ function VimPlugInit()
   Plug 'dikiaap/minimalist'
   " comments with gc/gcc
   Plug 'tpope/vim-commentary'
-  " fzf stuff
-  Plug 'junegunn/fzf.vim'
   " Unix helpers Find, Delete, Mkdir, Move, Clocate, Chmod, SudoWrite,
   " SudoEdit, etc
   Plug 'tpope/vim-eunuch'
@@ -33,10 +31,16 @@ function VimPlugInit()
   Plug 'ervandew/supertab'
   Plug 'mhinz/vim-startify'
 
+  let s:fzf_vim_file="/usr/share/doc/fzf/examples/plugin/fzf.vim"
+  if filereadable(s:fzf_vim_file)
+    exe "source " . s:fzf_vim_file
+    Plug 'junegunn/fzf.vim'
+  endif
+
   call plug#end()
 endfunction
 
-call VimPlugInit()
+call s:VimPlugInit()
 
 let g:airline_theme='minimalist'
 silent! colorscheme minimalist
