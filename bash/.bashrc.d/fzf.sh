@@ -10,7 +10,13 @@ if [[ $(command -v fdfind) ]]; then
 fi
 
 # Pick from git install, or package manager install
-for x in $HOME/.fzf.bash /usr/share/fzf/shell/key-bindings.bash /usr/share/doc/fzf/examples/key-bindings.bash; do
+declare -a files
+files=(\
+    $HOME/.fzf.bash \
+    /usr/share/fzf/shell/key-bindings.bash \
+    /usr/share/doc/fzf/examples/key-bindings.bash\
+    )
+for x in ${files[@]}; do
     if [[ -f "$x" ]]; then
         source "$x"
         break
