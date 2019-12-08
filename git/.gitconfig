@@ -1,7 +1,7 @@
 [user]
 	name = Prasanna Loganathar
 	email = pvl@prasannavl.com
-	signingkey = CCCAC34A557E4B39
+	signingkey = A46820D5E4D1E03B
 [core]
 	autocrlf = input
 [credential]
