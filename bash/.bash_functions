@@ -1,18 +1,23 @@
 # some functions
 
-function mkcd() {
+mkcd() {
     mkdir -p "$@" && cd "$@"
 }
 
-function c() {
+c() {
     bc <<<"scale=20;$@"
 }
 
-function wttr() {
+wttr() {
     curl http://wttr.in/$@
 }
 
-function android_sdk_env() {
+ip_external() {
+    # curl ipecho.net/plain -s | xargs echo
+    dig +short myip.opendns.com @resolver1.opendns.com
+}
+
+android_sdk_env() {
     android_sdk=$HOME/Android/Sdk
     if [[ -d "$android_sdk" ]]; then
         export ANDROID_HOME=$android_sdk
