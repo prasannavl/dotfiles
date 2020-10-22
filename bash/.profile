@@ -36,6 +36,11 @@ if [ -r "$HOME/.cargo/env" ]; then
     . "$HOME/.cargo/env"
 fi
 
+# deno
+if [ -d "$HOME/.deno/bin" ]; then
+    PATH="$HOME/.deno/bin:$PATH"
+fi
+
 # private bin paths
 
 if [ -d "$HOME/.local/opt/bin" ]; then 
@@ -50,7 +55,4 @@ if [ -d "$HOME/bin" ]; then
     PATH="$HOME/bin:$PATH"
 fi
 
-
 export PATH
-
-export PATH="$HOME/.cargo/bin:$PATH"
