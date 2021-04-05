@@ -25,7 +25,7 @@ if [ $(command -v npm) ]; then
     unset npm_bin
 
     # npm root -g
-    export NODE_PATH=".npm/lib/node_modules"
+    export NODE_PATH="$HOME/.npm/lib/node_modules"
 fi
 
 # yarn
