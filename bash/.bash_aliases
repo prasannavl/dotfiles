@@ -12,6 +12,7 @@ alias ll='ls -lh --color=auto'
 alias la='ls -AlhF --group-directories-first --color=auto'
 alias l='ls -CFh --color=auto'
 alias l.='ls -dh .* --color=auto'
+alias lt='ls -lth --color=auto'
 
 alias xzgrep='xzgrep --color=auto'
 alias xzegrep='xzegrep --color=auto'
@@ -25,6 +26,7 @@ alias diffy='diff -y --color'
 alias iostatw='iostat -xdszh 1'
 alias pg='pgrep -af'
 alias o=xdg-open
+alias r=ranger
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
