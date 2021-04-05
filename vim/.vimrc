@@ -1,4 +1,4 @@
-function s:VimPlugInit() 
+function s:VimPlugInit()
   " auto install plug
   if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -30,6 +30,12 @@ function s:VimPlugInit()
   " misc
   Plug 'ervandew/supertab'
   Plug 'mhinz/vim-startify'
+
+  " lsp
+  Plug 'prabirshrestha/vim-lsp'
+  Plug 'mattn/vim-lsp-settings'
+  Plug 'prabirshrestha/asyncomplete.vim'
+  Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
   let s:fzf_vim_file="/usr/share/doc/fzf/examples/plugin/fzf.vim"
   if filereadable(s:fzf_vim_file)
@@ -79,9 +85,9 @@ let g:netrw_banner = 1
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
 let g:netrw_preview = 1
-let g:netrw_altv = 0
+let g:netrw_altv = 1
 let g:netrw_alto = 0
-let g:netrw_winsize = 25
+" let g:netrw_winsize = 25
 
 " Autoload project drawer
 "
@@ -109,6 +115,7 @@ nmap <CR> o<Esc>
 " External shortcuts
 " map <C-n> :NERDTreeToggle<CR>
 map <C-p> :Files<CR> " fzf
+" nnoremap <C-p> :<C-u>FZF<CR> "fzf
 
 " Switch cursor indication for insert mode/normal mode
 " autocmd InsertEnter,InsertLeave * set cul!
@@ -117,7 +124,7 @@ map <C-p> :Files<CR> " fzf
 if has("autocmd")
   au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
   au InsertEnter,InsertChange *
-    \ if v:insertmode == 'i' | 
+    \ if v:insertmode == 'i' |
     \   silent execute '!echo -ne "\e[6 q"' | redraw! |
     \ elseif v:insertmode == 'r' |
     \   silent execute '!echo -ne "\e[4 q"' | redraw! |
