@@ -1,4 +1,6 @@
-## Profile. Note: Use POSIX compatible syntax as this can be 
+## User profile
+
+# Note: Use POSIX compatible syntax as this can be
 # loaded by any shell.
 
 # if running bash
@@ -7,6 +9,8 @@ if [ -n "$BASH_VERSION" ]; then
 	. "$HOME/.bashrc"
     fi
 fi
+
+## Setup lang
 
 # go-lang
 gopath_dir="$HOME/go"
@@ -46,29 +50,33 @@ if [ -d "$HOME/.deno/bin" ]; then
     PATH="$HOME/.deno/bin:$PATH"
 fi
 
-# private bin paths
+## Setup bin paths
 
-if [ -d "$HOME/.local/opt/bin" ]; then 
-    PATH="$HOME/.local/opt/bin:$PATH"
+# unmanaged opt bin
+if [ -d "$HOME/opt/bin" ]; then
+    PATH="$HOME/opt/bin:$PATH"
 fi
 
-if [ -d "$HOME/.local/bin" ]; then 
+# managed local bins (python default, automated
+# symlinks, .local/src based builds, etc)
+if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-if [ -d "$HOME/source/scripts/bin" ]; then
-    PATH="$HOME/source/scripts/bin:$PATH"
+# src repo managed bin
+if [ -d "$HOME/src/scripts/bin" ]; then
+    PATH="$HOME/src/scripts/bin:$PATH"
 fi
 
+# unmanaged local bin
 if [ -d "$HOME/bin" ]; then
     PATH="$HOME/bin:$PATH"
 fi
 
 export PATH
 
-## Local
+## Setup host specific
 
 if [ -f "$HOME/.profile.local" ]; then
     . "$HOME/.profile.local"
 fi
-
