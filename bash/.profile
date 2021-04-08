@@ -68,6 +68,11 @@ if [ -d "$HOME/src/scripts/bin" ]; then
     PATH="$HOME/src/scripts/bin:$PATH"
 fi
 
+# src repo managed bin
+if [ -d "$HOME/src/multiverse/bin" ]; then
+    PATH="$HOME/src/multiverse/bin:$PATH"
+fi
+
 # unmanaged local bin
 if [ -d "$HOME/bin" ]; then
     PATH="$HOME/bin:$PATH"
