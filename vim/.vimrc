@@ -1,49 +1,49 @@
 function s:VimPlugInit()
-  " auto install plug
-  if empty(glob('~/.vim/autoload/plug.vim'))
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-  endif
+    " auto install plug
+    if empty(glob('~/.vim/autoload/plug.vim'))
+        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+                    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    endif
 
-  " Plugins will be downloaded under the specified directory.
-  call plug#begin('~/.vim/plugged')
+    " Plugins will be downloaded under the specified directory.
+    call plug#begin('~/.vim/plugged')
 
-  " very basic
-  Plug 'tpope/vim-sensible'
-  " surround cs/ds
-  Plug 'tpope/vim-surround'
-  " git plugins
-  Plug 'tpope/vim-fugitive'
-  Plug 'airblade/vim-gitgutter'
-  " theme
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'dikiaap/minimalist'
-  " comments with gc/gcc
-  Plug 'tpope/vim-commentary'
-  " Unix helpers Find, Delete, Mkdir, Move, Clocate, Chmod, SudoWrite,
-  " SudoEdit, etc
-  Plug 'tpope/vim-eunuch'
-  " emmet helpers - Ctrl +y
-  Plug 'mattn/emmet-vim'
-  " misc
-  Plug 'ervandew/supertab'
-  Plug 'mhinz/vim-startify'
+    " very basic
+    Plug 'tpope/vim-sensible'
+    " surround cs/ds
+    Plug 'tpope/vim-surround'
+    " git plugins
+    Plug 'tpope/vim-fugitive'
+    Plug 'airblade/vim-gitgutter'
+    " theme
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'dikiaap/minimalist'
+    " comments with gc/gcc
+    Plug 'tpope/vim-commentary'
+    " Unix helpers Find, Delete, Mkdir, Move, Clocate, Chmod, SudoWrite,
+    " SudoEdit, etc
+    Plug 'tpope/vim-eunuch'
+    " emmet helpers - Ctrl +y
+    Plug 'mattn/emmet-vim'
+    " misc
+    Plug 'ervandew/supertab'
+    Plug 'mhinz/vim-startify'
 
-  " lsp
-  Plug 'prabirshrestha/vim-lsp'
-  Plug 'mattn/vim-lsp-settings'
-  Plug 'prabirshrestha/asyncomplete.vim'
-  Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    " lsp
+    Plug 'prabirshrestha/vim-lsp'
+    Plug 'mattn/vim-lsp-settings'
+    Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
 
-  let s:fzf_vim_file="/usr/share/doc/fzf/examples/plugin/fzf.vim"
-  if filereadable(s:fzf_vim_file)
-    exe "source " . s:fzf_vim_file
-    Plug 'junegunn/fzf.vim'
-  endif
+    let s:fzf_vim_file="/usr/share/doc/fzf/examples/plugin/fzf.vim"
+    if filereadable(s:fzf_vim_file)
+        exe "source " . s:fzf_vim_file
+        Plug 'junegunn/fzf.vim'
+    endif
 
-  call plug#end()
+    call plug#end()
 endfunction
 
 call s:VimPlugInit()
@@ -101,9 +101,9 @@ let g:netrw_alto = 0
 " This allows better flexibility on pseudo terminals like
 " gnome-terminal.
 if has("gui_running")
-  set clipboard=unnamedplus
+    set clipboard=unnamedplus
 else
-  set clipboard=unnamed
+    set clipboard=unnamed
 endif
 
 " o/O inserts a new line after/before current,
@@ -122,12 +122,42 @@ map <C-p> :Files<CR> " fzf
 
 " Change cursor shape in different modes for gnome-Terminal
 if has("autocmd")
-  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
-  au InsertEnter,InsertChange *
-    \ if v:insertmode == 'i' |
-    \   silent execute '!echo -ne "\e[6 q"' | redraw! |
-    \ elseif v:insertmode == 'r' |
-    \   silent execute '!echo -ne "\e[4 q"' | redraw! |
-    \ endif
-  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+    au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
+    au InsertEnter,InsertChange *
+                \ if v:insertmode == 'i' |
+                \   silent execute '!echo -ne "\e[6 q"' | redraw! |
+                \ elseif v:insertmode == 'r' |
+                \   silent execute '!echo -ne "\e[4 q"' | redraw! |
+                \ endif
+    au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
 endif
+
+" lsp
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+    inoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    inoremap <buffer> <expr><c-d> lsp#scroll(-4)
+
+    let g:lsp_format_sync_timeout = 1000
+    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+
+endfunction
+
+augroup lsp_install
+    au!
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
