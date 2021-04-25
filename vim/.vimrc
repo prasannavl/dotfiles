@@ -78,7 +78,7 @@ set incsearch
 set hlsearch
 set shiftwidth=4
 set expandtab
-
+set nu
 
 " netrw
 let g:netrw_banner = 1
