@@ -30,6 +30,8 @@ function s:VimPlugInit()
     " misc
     Plug 'ervandew/supertab'
     Plug 'mhinz/vim-startify'
+    " relativenumber / absolute num toggle
+    Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
     " lsp
     Plug 'prabirshrestha/vim-lsp'
