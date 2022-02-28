@@ -21,25 +21,16 @@ alias zgrep='zgrep --color=auto'
 alias zfgrep='zfgrep --color=auto'
 alias zegrep='zegrep --color=auto'
 
-alias t='tree -ah'
-alias diffy='diff -y --color'
-alias iostatw='iostat -xdszh 1'
-alias pg='pgrep -af'
-alias o=xdg-open
-alias r=ranger
+checked_alias tree t='tree -ah'
+checked_alias diff diffy='diff -y --color'
+checked_alias prep pgrepf='pgrep -af'
+checked_alias xdg-open o=xdg-open
+checked_alias ranger r=ranger
+checked_alias iostat iostatw='iostat -xdszh 1'
+checked_alias iotop iotop="sudo iotop"
+checked_alias lxc lxc="sudo lxc"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+checked_alias notify_send alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-alias cat-highlight='highlight -O ansi --force'
-alias cat-source-highlight='source-highlight -f esc -o STDOUT -i'
-
-alias lxc="sudo lxc"
-alias iotop="sudo iotop"
-
-sublime_text="/opt/sublime_text/sublime_text"
-if [[ -x "$sublime_text" ]]; then
-    alias sublime="$sublime_text"
-fi
-unset sublime_text
