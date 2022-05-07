@@ -1,7 +1,7 @@
 vim/.vim/.netrwhist
 vim/.vim/pack
 vim/.vim/plugged
-vim/.vim/autoload/plug.vim
+vim/.vim/autoload/plug.vim*
 mpv/.config/mpv/watch_later
 .vscode
 vim/.vim/session/
