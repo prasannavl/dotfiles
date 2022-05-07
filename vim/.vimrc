@@ -15,6 +15,7 @@ function s:VimPlugInit()
     Plug 'tpope/vim-surround'
     " git plugins
     Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-rhubarb'
     Plug 'airblade/vim-gitgutter'
     " theme
     Plug 'vim-airline/vim-airline'
@@ -38,12 +39,10 @@ function s:VimPlugInit()
     Plug 'mattn/vim-lsp-settings'
     Plug 'prabirshrestha/asyncomplete.vim'
     Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    Plug 'keremc/asyncomplete-clang.vim'
 
-    let s:fzf_vim_file="/usr/share/doc/fzf/examples/plugin/fzf.vim"
-    if filereadable(s:fzf_vim_file)
-        exe "source " . s:fzf_vim_file
-        Plug 'junegunn/fzf.vim'
-    endif
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
 
     call plug#end()
 endfunction
@@ -60,6 +59,7 @@ hi LineNr ctermbg=NONE
 hi NonText ctermbg=NONE
 hi Normal ctermbg=NONE
 hi Visual ctermfg=235 ctermbg=189 cterm=NONE guifg=#192224 guibg=#F9F9FF guisp=#F9F9FF gui=NONE
+hi Search ctermfg=2 ctermbg=8
 
 " Setup vim session paths. This avoids polluting working dir
 " and keeps things clean and organized
@@ -80,7 +80,10 @@ set incsearch
 set hlsearch
 set shiftwidth=4
 set expandtab
-set nu
+set number
+" hide buffer instead of prompt on unsaved changes
+set hidden
+set showcmd
 
 " netrw
 let g:netrw_banner = 1
@@ -89,7 +92,7 @@ let g:netrw_browse_split = 4
 let g:netrw_preview = 1
 let g:netrw_altv = 1
 let g:netrw_alto = 0
-" let g:netrw_winsize = 25
+let g:netrw_winsize = 25
 
 " Autoload project drawer
 "
@@ -111,8 +114,8 @@ endif
 " o/O inserts a new line after/before current,
 " but enters insert mode. This allows Shift+Enter/CR
 " to do this without entering insert mode.
-nmap <S-Enter> O<Esc>
-nmap <CR> o<Esc>
+" nmap <S-Enter> O<Esc>
+" nmap <CR> o<Esc>
 
 " External shortcuts
 " map <C-n> :NERDTreeToggle<CR>
@@ -161,5 +164,8 @@ endfunction
 augroup lsp_install
     au!
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+    " C++
+    autocmd User asyncomplete_setup call asyncomplete#register_source(
+        \ asyncomplete#sources#clang#get_source_options())
 augroup END
 
