@@ -16,7 +16,7 @@ init_stow() {
 
 init_tmux() {
   git clone https://github.com/tmux-plugins/tpm "${TMUX_TPM_DIR}"
-  TMUX_PLUGIN_MANAGER_PATH=$TMUX_TPM_DIR $TMUX_TPM_DIR/scripts/install_plugins.sh
+  $TMUX_TPM_DIR/bin/install_plugins
 }
 
 clean_tmux() {
