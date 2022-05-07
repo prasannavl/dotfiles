@@ -12,6 +12,9 @@
 [grep]
 	extendRegexp = true
 	lineNumber = true
+[merge]
+	conflictstyle = diff3
+
 [alias]
-	logo = log --oneline
-	logx = log --pretty=format:"%h%x09%an%x09%ad%x09%s"
+	lo = log --oneline
+	log-full = log --pretty=format:"%h%x09%an%x09%ad%x09%s"
