@@ -14,30 +14,35 @@ fi
 
 # go-lang
 gopath_dir="$HOME/src/go"
-if [ $(command -v go) ] && [ -d "$gopath_dir" ]; then
+if [ "$(command -v go)" -o -d "$gopath_dir" ]; then
     export GOPATH="$gopath_dir"
+    mkdir -p "$gopath_dir" || true;
     PATH="$gopath_dir/bin:$PATH"
 fi
 unset gopath_dir
 
 # npm
-if [ $(command -v npm) ]; then
-    # npm bin -g
-    # npm config set prefix $HOME/.npm
-    npm_bin="$HOME/.npm/bin"
+# npm bin -g
+# npm config set prefix $HOME/.npm
+npm_bin="$HOME/.npm/bin"
+if [ "$(command -v npm)" -o -d "$npm_bin" ]; then
     PATH="$npm_bin:$PATH"
-    unset npm_bin
-
     # npm root -g
     export NODE_PATH="$HOME/.npm/lib/node_modules"
 fi
+unset npm_bin
 
 # yarn
-if [ $(command -v yarn) ]; then
-    # export NODE_PATH="$(yarn --offline global dir)/node_modules"
-    yarn_modules="$HOME/.config/yarn/global/node_modules"
+# "$(yarn --offline global dir)/node_modules"
+yarn_modules="$HOME/.config/yarn/global/node_modules"
+if [ "$(command -v yarn)" -o -d "$yarn_modules" ]; then
     export NODE_PATH="$yarn_modules:$NODE_PATH"
-    unset yarn_modules
+fi
+unset yarn_modules
+
+# linuxbrew
+if [ -f "/home/pvl/.linuxbrew/bin/brew" ]; then
+    eval "$(/home/pvl/.linuxbrew/bin/brew shellenv)"
 fi
 
 # rust, cargo
@@ -85,3 +90,4 @@ export PATH
 if [ -f "$HOME/.profile.local" ]; then
     . "$HOME/.profile.local"
 fi
+
