@@ -45,10 +45,6 @@ if [ -f "/home/pvl/.linuxbrew/bin/brew" ]; then
     eval "$(/home/pvl/.linuxbrew/bin/brew shellenv)"
 fi
 
-# rust, cargo
-if [ -r "$HOME/.cargo/env" ]; then
-    . "$HOME/.cargo/env"
-fi
 
 # deno
 if [ -d "$HOME/.deno/bin" ]; then
@@ -91,3 +87,9 @@ if [ -f "$HOME/.profile.local" ]; then
     . "$HOME/.profile.local"
 fi
 
+## Sourcing
+
+# rust, cargo
+if [ -r "$HOME/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
+fi
