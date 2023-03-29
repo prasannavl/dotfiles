@@ -1,6 +1,6 @@
 # fzf
 
-# Let's exit if fasd isn't installed.
+# Let's exit if not installed.
 if [[ ! $(command -v fzf) ]]; then return 0; fi
 
 # Custom config
@@ -13,7 +13,7 @@ fi
 
 # Source the required scripts for default completion
 
-source_file_if_exists() {
+__source_file_if_exists() {
     local file="${1?-file required}"
     if [[ -f "$file" ]]; then
      . "$file"
@@ -27,12 +27,12 @@ if [[ -f $HOME/.fzf.bash ]]; then
     . $HOME/.fzf.bash
 elif [[ -f "/etc/debian_version" ]]; then 
     # debian pkg version
-    source_file_if_exists "/usr/share/doc/fzf/examples/key-bindings.bash"
-    source_file_if_exists "/usr/share/doc/fzf/examples/completion.bash"
+    __source_file_if_exists "/usr/share/doc/fzf/examples/key-bindings.bash"
+    __source_file_if_exists "/usr/share/doc/fzf/examples/completion.bash"
 elif [[ -d "/usr/share/fzf/shell" ]]; then
     # fedora / arch
-    source_file_if_exists "/usr/share/fzf/shell/key-bindings.bash"
-    source_file_if_exists "/usr/share/fzf/shell/completion.bash"
+    __source_file_if_exists "/usr/share/fzf/shell/key-bindings.bash"
+    __source_file_if_exists "/usr/share/fzf/shell/completion.bash"
 fi
 
 # Custom completion commands
@@ -50,3 +50,6 @@ for cmd in ${dir_cmds[@]}; do
         complete -F _fzf_dir_completion -o default -o bashdefault ${cmd}; 
     fi
 done
+
+unset _source_file_if_exists
+

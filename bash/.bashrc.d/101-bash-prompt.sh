@@ -14,7 +14,7 @@
 # Color sequence: \[ESC[fg;format;bgm\] or \[$(tput setaf/ab color0-7)\] 
 # tput => terminfo, ncurses
 
-function setup_ps1() {
+setup_ps1() {
     # reset
     local r="\[$(tput sgr0)\]"
     local b="\[$(tput bold)\]"
@@ -28,59 +28,63 @@ function setup_ps1() {
     local fred="\[\033[38;5;196m\]"
     local fpink="\[\033[38;5;13m\]"
 
-    local error="${b}${fred}\$(e="\$?";[[ "\$e" == "0" ]] || printf \"[exit: "\$e"]\n\n\")"
+    local error="${b}${fred}\$(e="\$?";[ "\$e" == "0" ] || printf \"[exit: "\$e"]\n\n\")"
 
     local ps1_main_line="${error}${r}${fgray}[\t|${b}${fgreen}\u${r}${fgreen}@\h\
 ${r}${fgray}:${r}${fblue}\w${r}${fgray}]"
 
     local ps1_exit_line="${r}\\n\$ "
 
-    if [[ $(command -v git) ]]; then
-        local ps1_main_line="${ps1_main_line} ${fpink}\`_parse_git_branch\`"
+    if [ $(command -v git) ]; then
+        local ps1_main_line="${ps1_main_line} ${fpink}\$(__parse_git_branch_info)"
     fi
 
     export PS1="${ps1_main_line}${ps1_exit_line}"
 }
 
 # get current branch in git repo
-function _parse_git_branch() {
-	BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
-	if [ ! "${BRANCH}" == "" ]
+__parse_git_branch_info() {
+	local branch
+	local status
+
+	branch=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`
+	if [ ! "${branch}" == "" ]
 	then
-		STAT=`_parse_git_dirty`
-		echo "(${BRANCH}${STAT})"
+		status="$(__parse_git_branch_status)"
+		echo "(${branch}${status})"
 	else
 		echo ""
 	fi
 }
 
 # get current status of git repo
-function _parse_git_dirty {
-	status=`git status 2>&1 | tee`
-	dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
-	untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
-	ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
-	newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
-	renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
-	deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
-	bits=''
+__parse_git_branch_status() {
+	local status=`git status 2>&1 | tee`
+	local dirty=`echo -n "${status}" 2> /dev/null | grep "modified:" &> /dev/null; echo "$?"`
+	local untracked=`echo -n "${status}" 2> /dev/null | grep "Untracked files" &> /dev/null; echo "$?"`
+	local ahead=`echo -n "${status}" 2> /dev/null | grep "Your branch is ahead of" &> /dev/null; echo "$?"`
+	local newfile=`echo -n "${status}" 2> /dev/null | grep "new file:" &> /dev/null; echo "$?"`
+	local renamed=`echo -n "${status}" 2> /dev/null | grep "renamed:" &> /dev/null; echo "$?"`
+	local deleted=`echo -n "${status}" 2> /dev/null | grep "deleted:" &> /dev/null; echo "$?"`
+	local bits=''
+
 	if [ "${renamed}" == "0" ]; then
-		bits=">${bits}"
+		bits="[*]${bits}"
 	fi
 	if [ "${ahead}" == "0" ]; then
-		bits="*${bits}"
+		bits="[>>]${bits}"
 	fi
 	if [ "${newfile}" == "0" ]; then
-		bits="+${bits}"
+		bits="[+]${bits}"
 	fi
 	if [ "${untracked}" == "0" ]; then
-		bits="?${bits}"
+		bits="[##]${bits}"
 	fi
 	if [ "${deleted}" == "0" ]; then
-		bits="x${bits}"
+		bits="[-]${bits}"
 	fi
 	if [ "${dirty}" == "0" ]; then
-		bits="!${bits}"
+		bits="[*]${bits}"
 	fi
 	if [ ! "${bits}" == "" ]; then
 		echo " ${bits}"

@@ -3,14 +3,28 @@
 # Note: Use POSIX compatible syntax as this can be
 # loaded by any shell.
 
-# if running bash
-if [ -n "$BASH_VERSION" ]; then
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
+# TODO: Move to these to individual bashrc.d 
+# ======= Package managers
+
+# nix pkgs
+if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+    . "$HOME/.nix-profile/etc/profile.d/nix.sh"
+    export XDG_DATA_DIRS=$HOME/.nix-profile/share:$XDG_DATA_DIRS
 fi
 
-## Setup lang
+# linuxbrew
+if [ -f "$HOME/.linuxbrew/bin/brew" ]; then
+    eval "$($HOME/.linuxbrew/bin/brew shellenv)"
+elif [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+# ======= Lang-specific
+
+# rust, cargo
+if [ -r "$HOME/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
+fi
 
 # go-lang
 gopath_dir="$HOME/src/go"
@@ -20,6 +34,11 @@ if [ "$(command -v go)" -o -d "$gopath_dir" ]; then
     PATH="$gopath_dir/bin:$PATH"
 fi
 unset gopath_dir
+
+# deno
+if [ -d "$HOME/.deno/bin" ]; then
+    PATH="$HOME/.deno/bin:$PATH"
+fi
 
 # npm
 # npm bin -g
@@ -40,18 +59,8 @@ if [ "$(command -v yarn)" -o -d "$yarn_modules" ]; then
 fi
 unset yarn_modules
 
-# linuxbrew
-if [ -f "/home/pvl/.linuxbrew/bin/brew" ]; then
-    eval "$(/home/pvl/.linuxbrew/bin/brew shellenv)"
-fi
 
-
-# deno
-if [ -d "$HOME/.deno/bin" ]; then
-    PATH="$HOME/.deno/bin:$PATH"
-fi
-
-## Setup bin paths
+# ======= Bin paths
 
 # unmanaged opt bin
 if [ -d "$HOME/opt/bin" ]; then
@@ -81,15 +90,18 @@ fi
 
 export PATH
 
-## Setup host specific
+# ======= Host specific
 
 if [ -f "$HOME/.profile.local" ]; then
     . "$HOME/.profile.local"
 fi
 
-## Sourcing
 
-# rust, cargo
-if [ -r "$HOME/.cargo/env" ]; then
-    . "$HOME/.cargo/env"
+# ======= Bash RC
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    if [ -f "$HOME/.bashrc" ]; then
+	. "$HOME/.bashrc"
+    fi
 fi

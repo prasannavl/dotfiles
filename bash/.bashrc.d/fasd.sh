@@ -1,6 +1,6 @@
 # fasd opts
 
-# Let's exit if fasd isn't installed.
+# Let's exit if not installed.
 if [[ ! $(command -v fasd) ]]; then return 0; fi
 
 # Make sure the cache directory is created.
@@ -14,7 +14,5 @@ if [[ "$(command -v fasd)" -nt "$fasd_cache" || ! -s "$fasd_cache" ]]; then
     fasd --init posix-alias bash-hook bash-ccomp bash-ccomp-install >|"$fasd_cache"
 fi
 
-source "$fasd_cache"
+. "$fasd_cache"
 
-unset fasd_cache
-unset fasd_cache_dir
