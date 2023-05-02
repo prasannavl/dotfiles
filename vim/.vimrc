@@ -87,12 +87,10 @@ set showcmd
 
 " netrw
 let g:netrw_banner = 1
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 4
-let g:netrw_preview = 1
-let g:netrw_altv = 1
-let g:netrw_alto = 0
-let g:netrw_winsize = 25
+let g:netrw_keepdir=0
+let g:netrw_liststyle = 3 " tree
+let g:netrw_browse_split = 3 " 1(horiz)/2(vert)/3(newtab)/4(prev)
+let g:netrw_winsize = 25 " percent
 
 " Autoload project drawer
 "
@@ -119,8 +117,9 @@ endif
 
 " External shortcuts
 " map <C-n> :NERDTreeToggle<CR>
-map <C-p> :Files<CR> " fzf
-" nnoremap <C-p> :<C-u>FZF<CR> "fzf
+" fzf
+map <C-p> :Files<CR>
+" nnoremap <C-p> :<C-u>FZF<CR>
 
 " Switch cursor indication for insert mode/normal mode
 " autocmd InsertEnter,InsertLeave * set cul!
@@ -167,5 +166,6 @@ augroup lsp_install
     " C++
     autocmd User asyncomplete_setup call asyncomplete#register_source(
         \ asyncomplete#sources#clang#get_source_options())
+
 augroup END
 

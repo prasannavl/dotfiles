@@ -3,7 +3,6 @@
 # Note: Use POSIX compatible syntax as this can be
 # loaded by any shell.
 
-# TODO: Move to these to individual bashrc.d 
 # ======= Package managers
 
 # nix pkgs
@@ -13,6 +12,7 @@ if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
 fi
 
 # linuxbrew
+# Unused, but just in case needed
 if [ -f "$HOME/.linuxbrew/bin/brew" ]; then
     eval "$($HOME/.linuxbrew/bin/brew shellenv)"
 elif [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
@@ -99,7 +99,8 @@ fi
 
 # ======= Bash RC
 
-# if running bash
+# If bash, we call into bashrc to make things
+# consistent and have a simpler mental model
 if [ -n "$BASH_VERSION" ]; then
     if [ -f "$HOME/.bashrc" ]; then
 	. "$HOME/.bashrc"

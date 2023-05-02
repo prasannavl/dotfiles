@@ -3,6 +3,6 @@
 # This file is sourced from /usr/share/bash-completion/bash_completion
 # which inturn is sourced in /etc/profile.d/bash_completion.sh
 
-for file in ~/.bash_completion.d/*; do
+for file in ~/.bashrc.d/completions/*; do
   [ -f "$file" ] && source "$file"
 done
