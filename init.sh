@@ -3,14 +3,18 @@
 set -Eeuo pipefail
 
 setup_vars() {
-  TMUX_TPM_DIR=${HOME}/.tmux/plugins/tpm
+  STOW_TARGET="${STOW_TARGET:-${HOME}}"
+  TMUX_TPM_DIR="${HOME}/.tmux/plugins/tpm"
 }
 
 init_stow() {
+  local stow_target="${STOW_TARGET}"
   local stow_dirs
   stow_dirs=$(find . -maxdepth 1 -not \( -path . -o -path ./.git \) -type d)
+  
+  local x
   for x in ${stow_dirs}; do
-    stow -v ${x#\./}
+    stow -t "${stow_target}" -v ${x#\./}
   done
 }
 
@@ -34,10 +38,11 @@ main() {
     return 0
   fi
 
-  ensure_script_dir
+  setup_dir_env
   cd "$_SCRIPT_DIR"
   trap cleanup 1 2 3 6 15 ERR
 
+  local x
   for x in "${COMMANDS[@]}"; do
     local cmd="${1-}"
     if [[ "$x" == "${cmd}" ]]; then
@@ -61,7 +66,7 @@ usage() {
   echo "${COMMANDS[@]}"
 }
 
-ensure_script_dir() {
+setup_dir_env() {
   _WORKING_DIR="$(pwd)"
   local dir="$(dirname "${BASH_SOURCE[0]}")"
   _SCRIPT_DIR="$(cd "${dir}/" && pwd)"
