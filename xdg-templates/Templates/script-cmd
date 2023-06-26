@@ -18,10 +18,11 @@ main() {
         return 0
     fi
     
-    ensure_script_dir
+    setup_dir_env
     cd "$_SCRIPT_DIR"
     trap cleanup 1 2 3 6 15 ERR
     
+    local x
     for x in "${COMMANDS[@]}"; do
         local cmd="${1-}"
         if [[ "$x" == "${cmd}" ]]; then
@@ -45,7 +46,7 @@ usage() {
     echo "${COMMANDS[@]}"
 }
 
-ensure_script_dir() {
+setup_dir_env() {
     _WORKING_DIR="$(pwd)"
     local dir="$(dirname "${BASH_SOURCE[0]}")"
     _SCRIPT_DIR="$(cd "${dir}/" && pwd)"
