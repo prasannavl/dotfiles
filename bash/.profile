@@ -14,7 +14,7 @@ fi
 # linuxbrew
 # Unused, but just in case needed
 if [ -f "$HOME/.linuxbrew/bin/brew" ]; then
-    eval "$($HOME/.linuxbrew/bin/brew shellenv)"
+    eval "$("$HOME/.linuxbrew/bin/brew shellenv")"
 elif [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
@@ -28,7 +28,7 @@ fi
 
 # go-lang
 gopath_dir="$HOME/src/go"
-if [ "$(command -v go)" -o -d "$gopath_dir" ]; then
+if [ "$(command -v go)" ] || [ -d "$gopath_dir" ]; then
     export GOPATH="$gopath_dir"
     mkdir -p "$gopath_dir" || true;
     PATH="$gopath_dir/bin:$PATH"
@@ -44,7 +44,7 @@ fi
 # npm bin -g
 # npm config set prefix $HOME/.npm
 npm_bin="$HOME/.npm/bin"
-if [ "$(command -v npm)" -o -d "$npm_bin" ]; then
+if [ "$(command -v npm)" ] || [ -d "$npm_bin" ]; then
     PATH="$npm_bin:$PATH"
     # npm root -g
     export NODE_PATH="$HOME/.npm/lib/node_modules"
@@ -54,7 +54,7 @@ unset npm_bin
 # yarn
 # "$(yarn --offline global dir)/node_modules"
 yarn_modules="$HOME/.config/yarn/global/node_modules"
-if [ "$(command -v yarn)" -o -d "$yarn_modules" ]; then
+if [ "$(command -v yarn)" ] || [ -d "$yarn_modules" ]; then
     export NODE_PATH="$yarn_modules:$NODE_PATH"
 fi
 unset yarn_modules

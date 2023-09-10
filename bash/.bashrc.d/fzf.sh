@@ -6,7 +6,7 @@ if [[ ! $(command -v fzf) ]]; then return 0; fi
 # Custom config
 find_command="$(which fd || which fdfind)"
 if [[ -n "$find_command" ]]; then
-    export FZF_DEFAULT_COMMAND="${find_command} --follow --hidden --exclude .git --color=always"
+    export FZF_DEFAULT_COMMAND="${find_command} --follow --hidden --color=always"
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
     export FZF_DEFAULT_OPTS="--ansi"
 fi
@@ -38,16 +38,16 @@ fi
 # Custom completion commands
 
 path_cmds=(f mpv exa smplayer)
-for cmd in ${path_cmds[@]}; do 
-    if [[ $(command -v ${cmd}) ]]; then
-        complete -F _fzf_path_completion -o default -o bashdefault ${cmd}; 
+for cmd in "${path_cmds[@]}"; do 
+    if [[ $(command -v "${cmd}") ]]; then
+        complete -F _fzf_path_completion -o default -o bashdefault "${cmd}"; 
     fi
 done
 
 dir_cmds=(z d tree)
-for cmd in ${dir_cmds[@]}; do 
-    if [[ $(command -v ${cmd}) ]]; then 
-        complete -F _fzf_dir_completion -o default -o bashdefault ${cmd}; 
+for cmd in "${dir_cmds[@]}"; do 
+    if [[ $(command -v "${cmd}") ]]; then 
+        complete -F _fzf_dir_completion -o default -o bashdefault "${cmd}"; 
     fi
 done
 

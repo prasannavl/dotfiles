@@ -35,7 +35,7 @@ ${r}${fgray}:${r}${fblue}\w${r}${fgray}]"
 
     local ps1_exit_line="${r}\\n\$ "
 
-    if [ $(command -v git) ]; then
+    if [ "$(command -v git)" ]; then
         local ps1_main_line="${ps1_main_line} ${fpink}\$(__parse_git_branch_info)"
     fi
 

@@ -28,7 +28,7 @@ checked_alias() {
     local alias_line=${2?-alias line required}
     shift 
 
-    if [[ $(command -v $prog) ]]; then
+    if [[ $(command -v "$prog") ]]; then
         alias "${alias_line}"
     fi
 }
@@ -47,6 +47,7 @@ checked_alias lxc lxc="sudo lxc"
 checked_alias podman docker="podman"
 checked_alias batcat bat="batcat"
 checked_alias fdfind fd="fdfind"
+checked_alias broot br="broot"
 
 # cmd options
 checked_alias diff diffy='diff -y --color'
