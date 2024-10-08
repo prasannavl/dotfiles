@@ -5,6 +5,7 @@
 if [[ ! -f "/etc/debian_version" ]]; then return; fi
 
 if ! shopt -oq posix; then
+	# /etc/bash_completion is source link to second file below on debian
 	if [[ -f /etc/bash_completion ]]; then
 		. /etc/bash_completion
 	elif [[ -f /usr/share/bash-completion/bash_completion ]]; then

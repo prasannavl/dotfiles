@@ -1,5 +1,5 @@
 # environment for interactive bash session
 
 export EDITOR="vi -e"
-export VISUAL=vim
+export VISUAL=nvim
 export BROWSER=google-chrome

@@ -1,14 +1,12 @@
 # .bashrc
 
 # Source global definitions on redhat based systems
+# Debian calls these /etc/bash.bashrc, so won't source it.
+# On Debian /etc/bash.bashrc copied to user and overriden
+# instead of chaining. So we don't do anything.
 if [[ -f /etc/bashrc ]]; then
     . /etc/bashrc
 fi
-# On Debian/Ubuntu: /etc/bash.bashrc copied to user and overriden
-# instead of chaining.
-#   default = Skip entirely on non-interactive
-#   non-interactive = setopts, setup chroot ps1, cmd not found
-# So we don't do anything.
 
 # If not running interactively, quit so that
 # we stay true to debian and redhat defaults

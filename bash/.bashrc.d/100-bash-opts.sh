@@ -26,8 +26,8 @@ shopt -s cmdhist
 export HISTCONTROL="ignoreboth:erasedups"
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-export HISTSIZE=500000
-export HISTFILESIZE=500000
+export HISTSIZE=1000000
+export HISTFILESIZE=1000000
 
 ### other options like bind
 
