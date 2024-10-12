@@ -1,0 +1,3 @@
+vars() {
+    LINKS=(.hidden)
+}

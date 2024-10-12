@@ -21,4 +21,3 @@ for file in ~/.bashrc.d/*.sh; do
     [[ -r "$file" ]] || continue
     source "$file"
 done
-

@@ -1,5 +1,13 @@
-.vscode
+# editors
+/.vscode
+/.zed
+/.idea
+
+# linked-in dirs
+# mpv
 mpv/.config/mpv/watch_later
+
+# vim
 vim/.vim/.netrwhist
 vim/.vim/pack
 vim/.vim/plugged
@@ -7,3 +15,5 @@ vim/.vim/autoload/plug.vim*
 vim/.vim/session
 vim/.vim/.netrwhist
 
+# apple nonsense to avoid in PRs
+**/.DS_Store

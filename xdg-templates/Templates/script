@@ -2,12 +2,12 @@
 
 set -Eeuo pipefail
 
-setup_vars() {
+vars() {
 
 }
 
 main() {
-    setup_vars
+    vars
 }
 
 main "$@"

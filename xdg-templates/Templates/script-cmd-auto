@@ -11,6 +11,8 @@ run() {
 }
 
 main() {
+    COMMANDS=("run")
+
     setup_dir_env
     cd "$_SCRIPT_DIR"
     trap cleanup 1 2 3 6 15 ERR
@@ -19,9 +21,18 @@ main() {
     if [[ "${1-}" == "-h" || "${1-}" == "--help" ]]; then
         usage
         return 0
-    elif [[ "$#" < 1 ]]; then usage; exit 1; fi
-    local cmd="${1?cmd required}"
-    # Process cmd
+    fi
+
+    local x
+    for x in "${COMMANDS[@]}"; do
+        local cmd="${1-}"
+        if [[ "$x" == "$cmd" ]]; then
+            shift
+            ${cmd//-/_} "$@"
+            cleanup
+            return 0
+        fi
+    done
 
     usage
     cleanup

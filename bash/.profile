@@ -47,7 +47,7 @@ npm_bin="$HOME/.npm/bin"
 if [ "$(command -v npm)" ] || [ -d "$npm_bin" ]; then
     PATH="$npm_bin:$PATH"
     # npm root -g
-    export NODE_PATH="$HOME/.npm/lib/node_modules"
+    export NODE_PATH="$HOME/.npm/lib/node_modules:$NODE_PATH"
 fi
 unset npm_bin
 
@@ -58,7 +58,6 @@ if [ "$(command -v yarn)" ] || [ -d "$yarn_modules" ]; then
     export NODE_PATH="$yarn_modules:$NODE_PATH"
 fi
 unset yarn_modules
-
 
 # ======= Bin paths
 
@@ -95,7 +94,6 @@ export PATH
 if [ -f "$HOME/.profile.local" ]; then
     . "$HOME/.profile.local"
 fi
-
 
 # ======= Bash RC
 
