@@ -18,6 +18,9 @@ install() {
 }
 
 after_install() {
+    # we source it so we have access in the tmp shell
+    source $HOME/.cargo/env
+
     # install completions
     for bin in "${COMPLETION_BINS[@]}"; do
         rustup completions bash $bin > "$BASH_COMPLETIONS_DIR/$bin"
