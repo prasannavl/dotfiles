@@ -5,11 +5,12 @@
 
 local map = vim.keymap.set
 
+-- Ensure Ctrl + Left/Right at beginning/end of line moves to the prev/next
 map("n", "<C-Left>", "b", { desc = "Last word" })
 map("n", "<C-Right>", "w", { desc = "Next word" })
 
--- Remap Ctrl - Backspace to delete last word.
--- Note that terminal treats <C-BS> the same as <C-h>
-
+-- Remap Ctrl + Backspace to delete last word.
+-- Note that terminal (not nvim) treats <C-BS> the same as <C-h>, so we map
+-- that as well to take effect.
 map("i", "<C-BS>", "<C-w>", { desc = "Backspace last word", remap = false })
 map("i", "<C-h>", "<C-w>", { desc = "Backspace last word", remap = false })
