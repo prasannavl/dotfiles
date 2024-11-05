@@ -26,7 +26,7 @@ install() {
     tmp_dir=$(mktemp -d)
     clone_dir="$tmp_dir/nerd-fonts"
 
-    git clone --filter=blob:none --sparse git@github.com:ryanoasis/nerd-fonts "$clone_dir"
+    git clone --filter=blob:none --sparse https://github.com/ryanoasis/nerd-fonts "$clone_dir"
     pushd "$clone_dir" >/dev/null
 
     for font in "${FONTS[@]}"; do
