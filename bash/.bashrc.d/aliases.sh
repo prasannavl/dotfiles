@@ -26,7 +26,7 @@ alias zegrep='zegrep --color=auto'
 checked_alias() {
     local prog=${1?-cmd to check required}
     local alias_line=${2?-alias line required}
-    shift 
+    shift
 
     if [[ $(command -v "$prog") ]]; then
         alias "${alias_line}"
@@ -39,7 +39,7 @@ checked_alias pgrep p='pgrep -af'
 checked_alias xdg-open o="xdg-open"
 checked_alias ranger r="ranger"
 
-# sudo 
+# sudo
 checked_alias iotop iotop="sudo iotop"
 checked_alias lxc lxc="sudo lxc"
 
@@ -53,8 +53,10 @@ checked_alias broot br="broot"
 checked_alias diff diffy='diff -y --color'
 checked_alias iostat iostatw='iostat -xdszh 1'
 
+# editor
+checked_alias /var/lib/flatpak/app/dev.zed.Zed/current/active/export/bin/dev.zed.Zed zedit='flatpak run dev.zed.Zed'
+
 # others
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 checked_alias notify_send alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-

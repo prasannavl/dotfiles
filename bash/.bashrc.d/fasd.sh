@@ -15,4 +15,3 @@ if [[ "$(command -v fasd)" -nt "$fasd_cache" || ! -s "$fasd_cache" ]]; then
 fi
 
 . "$fasd_cache"
-
