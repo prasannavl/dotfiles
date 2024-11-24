@@ -1,6 +1,5 @@
 # enable color support of ls and also add handy aliases
-
-if [[ ! -f "/etc/debian_version" ]]; then return; fi
+# source: Debian
 
 if [[ -x /usr/bin/dircolors ]]; then
     [[ -r $HOME/.dircolors ]] && eval "$(dircolors -b $HOME/.dircolors)" || eval "$(dircolors -b)"
