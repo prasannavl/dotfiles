@@ -1,0 +1,2 @@
+Defaults passwd_timeout=0
+Defaults timestamp_timeout=10
