@@ -1,4 +1,3 @@
 
 _FASD_DATA="$HOME/.cache/fasd/list"
 _FASD_BACKENDS="recently-used current viminfo native"
-

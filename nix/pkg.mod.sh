@@ -1,5 +1,10 @@
 vars() {
     BASH_COMPLETIONS_DIR=$HOME/.bashrc.d/completions
+    case $DISTRO in
+        ubuntu|debian) PKGS=(nix-bin);;
+        arch) PKGS=(nix);;
+        *) true;;
+    esac
 }
 
 check_install() {
@@ -7,11 +12,14 @@ check_install() {
 }
 
 install() {
-    sudo apt install nix-bin
-    after_install
+    case $DISTRO in
+        ubuntu|debian) debian_after_install;;
+        arch) true;;
+        *) true;;
+    esac
 }
 
-after_install() {
+debian_after_install() {
     sudo nix-channel --add https://nixos.org/channels/nixos-unstable unstable
     sudo nix-channel --update
 
@@ -27,8 +35,4 @@ after_install() {
     echo 'experimental-features = nix-command flakes' >> "$HOME/.config/nix/nix.conf"
 
     # install nix pkg itself
-}
-
-uninstall() {
-    sudo apt purge nix-bin --autoremove
 }

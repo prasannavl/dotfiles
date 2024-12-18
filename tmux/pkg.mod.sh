@@ -1,9 +1,12 @@
 vars() {
     TMUX_PLUGIN_DIR="$HOME/.tmux/plugins"
     TMUX_TPM_DIR="$TMUX_PLUGIN_DIR/tpm"
-    LINKS=(
-        .tmux.conf
-        )
+    LINKS=(.tmux.conf)
+    PKGS=(tmux)
+}
+
+check_install() {
+    command -v tmux > /dev/null
 }
 
 after_link() {
@@ -18,16 +21,4 @@ before_unlink() {
 
 clean_conf() {
   rm -rf "$TMUX_PLUGIN_DIR"
-}
-
-check_install() {
-    command -v tmux > /dev/null
-}
-
-install() {
-  sudo apt install tmux
-}
-
-uninstall() {
-  sudo apt purge tmux --autoremove
 }

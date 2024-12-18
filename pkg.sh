@@ -6,10 +6,13 @@ vars() {
   TARGET="${TARGET:-$HOME}"
   PKG_MOD_SH="${PKG_MOD_SH:-pkg.mod.sh}"
   FORCE_RELINK="${FORCE_RELINK:-0}"
+  DISTRO=$(cat /etc/os-release | sed -n 's/^ID=//p')
+  DISTRO_DPKG=$(echo "$DISTRO" | grep -q "^debian\|ubuntu" && echo 1 || echo 0)
 
   # Overriden by each pkg in a clean subshell
   # to link what they need
   LINKS=()
+  PKGS=()
 }
 
 usage() {
@@ -85,11 +88,39 @@ run_cmd() {
     vars
     zeroconf_var_links
     case "$cmd" in
+        install)
+        _install;;
+        uninstall)
+        _uninstall;;
         purge)
         _purge;;
         clean)
         _clean;;
         *) "$cmd";;
+    esac
+}
+
+pkg_install() {
+    local pkg=("${PKGS[@]}")
+    [[ ${#pkg[@]} -eq 0 ]] && return 0;
+    local distro="$DISTRO"
+    case $distro in
+        debian|ubuntu) sudo apt install "${pkg[@]}";;
+        arch) sudo pacman -S "${pkg[@]}";;
+        # we don't install anything on unsupported distros
+        *) return 0;;
+    esac
+}
+
+pkg_uninstall() {
+    local pkg=("${PKGS[@]}")
+    [[ ${#pkg[@]} -eq 0 ]] && return 0;
+    local distro="$DISTRO"
+    case $distro in
+        debian|ubuntu) sudo apt purge "${pkg[@]}" --autoremove;;
+        arch) sudo pacman -Rns "${pkg[@]}";;
+        # we don't uninstall anything on unsupported distros
+        *) return 0;;
     esac
 }
 
@@ -152,20 +183,30 @@ unlink() {
 relink() { FORCE_RELINK=1 link; }
 
 sync() {
-    if ! check_install; then install; fi
+    if ! check_install; then _install; fi
     relink
 }
 
+_install() {
+    pkg_install
+    install
+}
+
+_uninstall() {
+    pkg_uninstall
+    uninstall
+}
+
 _purge() {
-  _clean
-  uninstall
-  purge
+    _clean
+    uninstall
+    purge
 }
 
 _clean() {
-  unlink
-  clean_conf
-  clean
+    unlink
+    clean_conf
+    clean
 }
 
 # Stub functions to be overriden by pkgs
@@ -183,13 +224,13 @@ clean() { true; }
 purge() { true; }
 
 setup_dir_env() {
-  _WORKING_DIR="$(pwd)"
-  local dir="$(dirname "${BASH_SOURCE[0]}")"
-  _SCRIPT_DIR="$(cd "${dir}/" && pwd)"
+    _WORKING_DIR="$(pwd)"
+    local dir="$(dirname "${BASH_SOURCE[0]}")"
+    _SCRIPT_DIR="$(cd "${dir}/" && pwd)"
 }
 
 cleanup() {
-  cd "$_WORKING_DIR"
+    cd "$_WORKING_DIR"
 }
 
 main "$@"

@@ -7,6 +7,7 @@ check_install() {
 }
 
 install() {
+    [[ $DISTRO_DPKG == "0" ]] && return
     local tmp_dir=$(mktemp -d)
     local deb_file="$tmp_dir/vscode.deb"
     curl -fsSL "$DOWNLOAD_URL" > "$deb_file"
@@ -15,6 +16,6 @@ install() {
 }
 
 uninstall() {
-    echo TODO
-    exit 1
+    [[ $DISTRO_DPKG == "0" ]] && return
+    sudo dpkg -r vscode
 }
