@@ -31,9 +31,13 @@ elif [[ -f "/etc/debian_version" ]]; then
 	__source_file_if_exists "/usr/share/doc/fzf/examples/completion.bash"
 	__source_file_if_exists "/usr/share/bash-completion/completions/fzf"
 elif [[ -d "/usr/share/fzf/shell" ]]; then
-	# fedora / arch
+	# fedora
 	__source_file_if_exists "/usr/share/fzf/shell/key-bindings.bash"
 	__source_file_if_exists "/usr/share/fzf/shell/completion.bash"
+elif [[ -d "/usr/share/fzf" ]]; then
+	# arch
+	__source_file_if_exists "/usr/share/fzf/key-bindings.bash"
+	__source_file_if_exists "/usr/share/fzf/completion.bash"
 fi
 
 # Custom completion commands
