@@ -65,8 +65,8 @@ nvim/
 - Add your files
 - Create `pkg.mod.sh` inside the dir for config
 - Override the `vars` function and set `LINKS` array var to set tmux conf only.
-- Override `after_link` to setup tpm plugin manager and install plugins.
-- Override `before_unlink` to cleanup tpm dir.
+- Override `post_link` to setup tpm plugin manager and install plugins.
+- Override `pre_unlink` to cleanup tpm dir.
 - Be a good citizen and add full conf cleanup to `clean_conf`
 
 ```bash
@@ -78,13 +78,13 @@ vars() {
         )
 }
 
-after_link() {
+post_link() {
   rm -rf "$TMUX_TPM_DIR"
   git clone https://github.com/tmux-plugins/tpm "$TMUX_TPM_DIR"
   $TMUX_TPM_DIR/bin/install_plugins
 }
 
-before_unlink() {
+pre_unlink() {
   rm -rf "$TMUX_TPM_DIR"
 }
 
@@ -119,13 +119,13 @@ vars() {
         )
 }
 
-after_link() {
+post_link() {
   rm -rf "$TMUX_TPM_DIR"
   git clone https://github.com/tmux-plugins/tpm "$TMUX_TPM_DIR"
   $TMUX_TPM_DIR/bin/install_plugins
 }
 
-before_unlink() {
+pre_unlink() {
   rm -rf "$TMUX_TPM_DIR"
 }
 
@@ -290,11 +290,11 @@ If you don't have time, these lines are the key logic - that's it.
     - Default impl for `vars`:
       - `LINKS=()` (nothing will get linked)
     - Default impl of `link|unlink`
-      - Call `before_link | before_unlink` if exists
+      - Call `pre_link | pre_unlink` if exists
       - For each file in `LINKS` var, link them inside `TARGET` dir
-      - Call `after_link | after_unlink` if exists
+      - Call `post_link | post_unlink` if exists
       - This allows your package to flexibly choose whichever model:
-      - Just add `LINKS` in `vars` to autolink and use `before_` and `after_`
+      - Just add `LINKS` in `vars` to autolink and use `pre_` and `post_`
           hooks for additional work
         - Or override `link` and `unlink` completely and choose your own mechanism
           entirely.

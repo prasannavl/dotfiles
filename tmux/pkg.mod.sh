@@ -9,13 +9,13 @@ check_install() {
     command -v tmux > /dev/null
 }
 
-after_link() {
+post_link() {
   rm -rf "$TMUX_TPM_DIR"
   git clone https://github.com/tmux-plugins/tpm "$TMUX_TPM_DIR"
   $TMUX_TPM_DIR/bin/install_plugins
 }
 
-before_unlink() {
+pre_unlink() {
   rm -rf "$TMUX_TPM_DIR"
 }
 

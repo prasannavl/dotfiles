@@ -148,7 +148,7 @@ sanity_check_link() {
 }
 
 link() {
-    before_link
+    pre_link
     local target="$TARGET"
     local links=("${LINKS[@]}")
 
@@ -166,18 +166,18 @@ link() {
         echo "ln: $item_t -> $item_src"
         ln $link_opts -ns "$item_src" "$item_t"
     done
-    after_link
+    post_link
 }
 
 unlink() {
-    before_unlink
+    pre_unlink
     local target="$TARGET"
     local links=("${LINKS[@]}")
     for x in "${links[@]}"; do
         echo "rm: $target/$x"
         rm -f "$target/$x"
     done
-    after_unlink
+    post_unlink
 }
 
 relink() { FORCE_RELINK=1 link; }
@@ -188,13 +188,17 @@ sync() {
 }
 
 _install() {
+    pre_install
     pkg_install
     install
+    post_install
 }
 
 _uninstall() {
+    pre_uninstall
     pkg_uninstall
     uninstall
+    post_uninstall
 }
 
 _purge() {
@@ -212,13 +216,22 @@ _clean() {
 # Stub functions to be overriden by pkgs
 # -- false defaults
 check_install() { false; }
+
 # -- true / empty defaults
+pre_install() { true; }
 install() { true; }
+post_install() { true; }
+
+pre_uninstall() { true; }
 uninstall() { true; }
-before_link() { true; }
-before_unlink() { true; }
-after_link() { true; }
-after_unlink() { true; }
+post_uninstall() { true; }
+
+pre_link() { true; }
+post_link() { true; }
+
+pre_unlink() { true; }
+post_unlink() { true; }
+
 clean_conf() { true; }
 clean() { true; }
 purge() { true; }

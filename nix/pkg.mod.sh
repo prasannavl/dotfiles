@@ -8,7 +8,7 @@ vars() {
 }
 
 check_install() {
-    command -v nix-env > /dev/null
+    command -v nix > /dev/null
 }
 
 install() {
