@@ -24,8 +24,6 @@ require("lazy").setup({
         { "tpope/vim-fugitive" }, -- git
         { "sindrets/diffview.nvim" }, -- git diffview
 
-        { "nvim-telescope/telescope-symbols.nvim" },
-
         -- lang stuff
 
         { "NoahTheDuke/vim-just", lazy = true },
