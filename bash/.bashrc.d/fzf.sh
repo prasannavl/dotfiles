@@ -13,13 +13,6 @@ fi
 
 # Source the required scripts for default completion
 
-__source_file_if_exists() {
-	local file="${1?-file required}"
-	if [[ -f "$file" ]]; then
-		. "$file"
-	fi
-}
-
 if [[ -f $HOME/.fzf.bash ]]; then
 	# git version, prioritize this and skip everything else
 	# note, the line added due to install script
@@ -44,5 +37,3 @@ fi
 
 _fzf_setup_completion path f fzf mpv exa smplayer vim nvim
 _fzf_setup_completion dir z d du tree ranger
-#
-unset _source_file_if_exists
