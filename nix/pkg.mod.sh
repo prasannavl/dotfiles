@@ -20,15 +20,18 @@ install() {
 }
 
 debian_after_install() {
-    sudo nix-channel --add https://nixos.org/channels/nixos-unstable unstable
-    sudo nix-channel --update
-
     # Bug: https://bugs.launchpad.net/ubuntu/+source/nix/+bug/2064563
     # Remove PATH from /usr/lib/environment.d/nix-daemon.conf
     # sudo rm -f /usr/share/user-tmpfiles.d/nix-daemon.conf
 
     # Add user to nix group
     sudo usermod -a -G nix-users "$USER"
+
+    # log in as group
+    newgrp nix-users
+
+    nix-channel --add https://nixos.org/channels/nixos-unstable unstable
+    nix-channel --update
 
     # echo 'experimental-features = nix-command flakes' >> /etc/nix/nix.conf
     mkdir -p "$HOME/.config/nix"

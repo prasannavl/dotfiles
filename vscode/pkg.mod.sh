@@ -17,5 +17,10 @@ install() {
 
 uninstall() {
     [[ $DISTRO_DPKG == "0" ]] && return
-    sudo dpkg -r vscode
+    sudo apt autopurge code
+}
+
+purge() {
+    [[ $DISTRO_DPKG == "0" ]] && return
+    sudo rm -rf /etc/apt/sources.list.d/vscode.list
 }

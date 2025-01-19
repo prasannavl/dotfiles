@@ -17,5 +17,10 @@ install() {
 
 uninstall() {
     [[ $DISTRO_DPKG == "0" ]] && return
-    sudo dpkg -r google-chrome-stable
+    sudo apt autopurge google-chrome-stable
+}
+
+purge() {
+    [[ $DISTRO_DPKG == "0" ]] && return
+    sudo rm -rf /etc/apt/sources.list.d/google-chrome.list
 }
