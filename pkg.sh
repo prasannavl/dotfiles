@@ -203,7 +203,7 @@ _uninstall() {
 
 _purge() {
     _clean
-    uninstall
+    _uninstall
     purge
 }
 

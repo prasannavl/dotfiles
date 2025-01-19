@@ -8,10 +8,9 @@ check_install() {
 
 install() {
     curl -fsSL https://deno.land/x/install/install.sh | sh
-    after_install
 }
 
-after_install() {
+post_install() {
     deno completions bash > "$BASH_COMPLETIONS_DIR/deno"
 }
 
