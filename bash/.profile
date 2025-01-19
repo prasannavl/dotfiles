@@ -3,10 +3,21 @@
 # Note: Use POSIX compatible syntax as this can be
 # loaded by any shell.
 
+# ======= Functions
+
+_path_add_checked() {
+    local p=${1?-path required}
+    local prepend=${2:-1}
+    local check_dir=${3:-$p}
+    [ ! -d "$check_dir" ] && return || true
+    [ $(echo "$PATH" | grep "$p") ] && return || true
+    [ "$prepend" == "1" ] && PATH="$p:$PATH" || PATH="$PATH:$p"
+}
+
 # ======= Package managers
 
 # nix pkgs
-if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+if [ -f "$HOM_path_append_if_existsE/.nix-profile/etc/profile.d/nix.sh" ]; then
 	. "$HOME/.nix-profile/etc/profile.d/nix.sh"
 	export XDG_DATA_DIRS=$HOME/.nix-profile/share:$XDG_DATA_DIRS
 fi
@@ -36,9 +47,7 @@ fi
 unset gopath_dir
 
 # deno
-if [ -d "$HOME/.deno/bin" ]; then
-	PATH="$HOME/.deno/bin:$PATH"
-fi
+_path_add_checked $HOME/.deno/bin
 
 # npm
 # npm bin -g
@@ -62,30 +71,16 @@ unset yarn_modules
 # ======= Bin paths
 
 # unmanaged opt bin
-if [ -d "$HOME/opt/bin" ]; then
-	PATH="$HOME/opt/bin:$PATH"
-fi
-
-# managed local bins (python default, automated
-# symlinks, .local/src based builds, etc)
-if [ -d "$HOME/.local/bin" ]; then
-	PATH="$HOME/.local/bin:$PATH"
-fi
-
+_path_add_checked $HOME/opt/bin
+# managed local bins (py default, auto symlinks, .local/src based builds, etc)
+_path_add_checked $HOME/.local/bin
 # src repo managed bin
-if [ -d "$HOME/src/scripts/bin" ]; then
-	PATH="$HOME/src/scripts/bin:$PATH"
-fi
-
+_path_add_checked $HOME/src/scripts/bin
+_path_add_checked $HOME/src/scripts/sbin
 # src repo managed bin
-if [ -d "$HOME/src/multiverse/bin" ]; then
-	PATH="$HOME/src/multiverse/bin:$PATH"
-fi
-
+_path_add_checked $HOME/src/multiverse/bin
 # unmanaged local bin
-if [ -d "$HOME/bin" ]; then
-	PATH="$HOME/bin:$PATH"
-fi
+_path_add_checked $HOME/bin
 
 export PATH
 
