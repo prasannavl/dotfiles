@@ -42,7 +42,7 @@ bash/
 - Create a dir to repr new package (eg: nvim)
 - Add your files
 - Create `pkg.mod.sh` inside the dir for config
-- Override the `vars` function and set `LINKS` array var to take control of want to link.
+- Override the `vars` function and set `LINKS` array var to take control of what to link.
 
 ```bash
 vars() {
@@ -159,8 +159,6 @@ uninstall() {
 - Yep! Just override `install`, `uninstall` and leave `LINKS` to default of `()`.
 
 #### Deno
-
-```bash
 
 ```bash
 vars() {
