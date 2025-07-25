@@ -7,7 +7,7 @@ vars() {
   PKG_MOD_SH="${PKG_MOD_SH:-pkg.mod.sh}"
   FORCE_RELINK="${FORCE_RELINK:-0}"
   DISTRO=$(cat /etc/os-release | sed -n 's/^ID=//p')
-  DISTRO_DPKG=$(echo "$DISTRO" | grep -q "^debian\|ubuntu" && echo 1 || echo 0)
+  DISTRO_DPKG=$(echo "$DISTRO" | grep -Eq '^(debian|ubuntu)$' && echo 1 || echo 0)
 
   # Overriden by each pkg in a clean subshell
   # to link what they need
