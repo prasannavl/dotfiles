@@ -17,7 +17,7 @@ _path_add_checked() {
 # ======= Package managers
 
 # nix pkgs
-if [ -f "$HOM_path_append_if_existsE/.nix-profile/etc/profile.d/nix.sh" ]; then
+if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
 	. "$HOME/.nix-profile/etc/profile.d/nix.sh"
 	export XDG_DATA_DIRS=$HOME/.nix-profile/share:$XDG_DATA_DIRS
 fi
