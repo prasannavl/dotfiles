@@ -23,9 +23,9 @@ main() {
         return 0
     fi
 
+    local cmd="${1-}"
     local x
     for x in "${COMMANDS[@]}"; do
-        local cmd="${1-}"
         if [[ "$x" == "$cmd" ]]; then
             shift
             ${cmd//-/_} "$@"
