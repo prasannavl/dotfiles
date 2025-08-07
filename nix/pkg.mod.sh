@@ -21,8 +21,9 @@ install() {
 
 debian_after_install() {
     # Bug: https://bugs.launchpad.net/ubuntu/+source/nix/+bug/2064563
-    # Remove PATH from /usr/lib/environment.d/nix-daemon.conf
-    # sudo rm -f /usr/share/user-tmpfiles.d/nix-daemon.conf
+    # Doesn't affect nix profile as much. But optionally: 
+    # - Remove PATH from /usr/lib/environment.d/nix-daemon.conf
+    # - sudo rm -f /usr/share/user-tmpfiles.d/nix-daemon.conf
 
     # Add user to nix group
     sudo usermod -a -G nix-users "$USER"
