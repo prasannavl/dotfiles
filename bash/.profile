@@ -19,7 +19,6 @@ _path_add_checked() {
 # nix pkgs
 if [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
 	. "$HOME/.nix-profile/etc/profile.d/nix.sh"
-	export XDG_DATA_DIRS=$HOME/.nix-profile/share:$XDG_DATA_DIRS
 fi
 
 # linuxbrew
