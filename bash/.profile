@@ -6,12 +6,12 @@
 # ======= Functions
 
 _path_add_checked() {
-    local p=${1?-path required}
-    local prepend=${2:-1}
-    local check_dir=${3:-$p}
-    [ ! -d "$check_dir" ] && return || true
-    [ $(echo "$PATH" | grep "$p") ] && return || true
-    [ "$prepend" == "1" ] && PATH="$p:$PATH" || PATH="$PATH:$p"
+	local p=${1?-path required}
+	local prepend=${2:-1}
+	local check_dir=${3:-$p}
+	[ ! -d "$check_dir" ] && return || true
+	[ $(echo "$PATH" | grep "$p") ] && return || true
+	[ "$prepend" == "1" ] && PATH="$p:$PATH" || PATH="$PATH:$p"
 }
 
 # ======= Package managers
@@ -62,10 +62,13 @@ unset npm_bin
 # yarn
 # "$(yarn --offline global dir)/node_modules"
 yarn_modules="$HOME/.config/yarn/global/node_modules"
-if [ "$(command -v yarn)" ] || [ -d "$yarn_modules" ]; then
+yarn_bin="$HOME/.yarn/bin"
+if [ "$(command -v yarn)" ] || [ -d "$yarn_modules" ] || [ -d "$yarn_bin" ]; then
+	PATH="$yarn_bin:$PATH"
 	export NODE_PATH="$yarn_modules:$NODE_PATH"
 fi
 unset yarn_modules
+unset yarn_bin
 
 # ======= Bin paths
 
