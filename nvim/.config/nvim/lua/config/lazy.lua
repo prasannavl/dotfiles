@@ -16,6 +16,16 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     spec = {
+
+        {
+            "olimorris/codecompanion.nvim",
+            opts = {},
+            dependencies = {
+                "nvim-lua/plenary.nvim",
+                "nvim-treesitter/nvim-treesitter",
+            },
+        },
+
         -- essentials
 
         { "tpope/vim-rsi" }, -- cmd line like key bindings

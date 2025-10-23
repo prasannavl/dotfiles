@@ -1,4 +1,0 @@
-/org/gnome/shell/disabled-extensions
-  ['ubuntu-dock@ubuntu.com', 'tiling-assistant@ubuntu.com']
-/org/gnome/shell/enabled-extensions
-  ['ding@rastersoft.com', 'dash-to-panel@jderose9.github.com', 'display-brightness-ddcutil@themightydeity.github.com']
