@@ -101,3 +101,7 @@ if [ -n "$BASH_VERSION" ]; then
 		. "$HOME/.bashrc"
 	fi
 fi
+
+# === Global envs
+#
+export ELECTRON_OZONE_PLATFORM_HINT=auto
