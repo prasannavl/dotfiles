@@ -4,6 +4,7 @@
 --
 
 local map = vim.keymap.set
+local del = vim.keymap.del
 
 -- Ensure Ctrl + Left/Right at beginning/end of line moves to the prev/next
 map("n", "<C-Left>", "b", { desc = "Last word" })

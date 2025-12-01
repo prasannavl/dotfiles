@@ -16,16 +16,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     spec = {
-
-        {
-            "olimorris/codecompanion.nvim",
-            opts = {},
-            dependencies = {
-                "nvim-lua/plenary.nvim",
-                "nvim-treesitter/nvim-treesitter",
-            },
-        },
-
         -- essentials
 
         { "tpope/vim-rsi" }, -- cmd line like key bindings
@@ -41,17 +31,26 @@ require("lazy").setup({
 
         -- todo
 
+        -- {
+        --     "olimorris/codecompanion.nvim",
+        --     opts = {},
+        --     dependencies = {
+        --         "nvim-lua/plenary.nvim",
+        --         "nvim-treesitter/nvim-treesitter",
+        --     },
+        -- },
+
         -- { "epwalsh/obsidian.nvim" },
         -- { "preservim/vim-pencil" },
 
         -- themes
 
-        { "ellisonleao/gruvbox.nvim" },
+        -- { "ellisonleao/gruvbox.nvim" },
 
         -- lazyvim plugins
 
         {
-            "echasnovski/mini.surround",
+            "nvim-mini/mini.surround",
             opts = {
                 mappings = {
                     add = "gsa",
@@ -89,7 +88,7 @@ require("lazy").setup({
         version = false, -- always use the latest git commit
         -- version = "*", -- try installing the latest stable version for plugins that support semver
     },
-    install = { colorscheme = { "tokyonight", "habamax" } },
+    install = { colorscheme = { "habamax" } },
     checker = {
         enabled = true, -- check for plugin updates periodically
         notify = false, -- notify on update
@@ -110,3 +109,11 @@ require("lazy").setup({
         },
     },
 })
+
+local not_in_wayland = (vim.env.WAYLAND_DISPLAY == nil) and (vim.env.DISPLAY == nil)
+local on_real_tty = (vim.env.XDG_SESSION_TYPE == "tty") or (vim.env.TERM == "linux")
+
+if not_in_wayland and on_real_tty then
+    vim.opt.termguicolors = false
+    vim.cmd("colorscheme default")
+end

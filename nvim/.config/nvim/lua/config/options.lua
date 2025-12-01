@@ -27,3 +27,6 @@ o.splitright = true
 o.scrolloff = 5
 o.cursorline = true
 -- o.guicursor = ""
+
+vim.g.snacks_animate = false
+o.background = "dark"
