@@ -25,14 +25,24 @@ debian_after_install() {
     # - Remove PATH from /usr/lib/environment.d/nix-daemon.conf
     # - sudo rm -f /usr/share/user-tmpfiles.d/nix-daemon.conf
 
+    sudo mkdir -p /etc/user-tmpfiles.d/ /etc/environment.d/
+    
+    # We simply override these, so nix uses it's own default 
+    # logic, which works better.
+    sudo tee /etc/environment.d/nix-daemon.conf <<END
+NIX_REMOTE=daemon
+END
+    sudo touch /etc/user-tmpfiles.d/nix-daemon.conf
+
     # Add user to nix group
     sudo usermod -a -G nix-users "$USER"
 
     # log in as group
     newgrp nix-users
 
-    nix-channel --add https://nixos.org/channels/nixos-unstable nixpkgs
-    nix-channel --update
+    sudo nix-channel --add https://nixos.org/channels/nixos-25.11 nixpkgs
+    # sudo nix-channel --add https://nixos.org/channels/nixos-unstable unstable
+    sudo nix-channel --update
 
     # echo 'experimental-features = nix-command flakes' >> /etc/nix/nix.conf
     mkdir -p "$HOME/.config/nix"
