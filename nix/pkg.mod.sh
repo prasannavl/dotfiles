@@ -31,7 +31,7 @@ debian_after_install() {
     # log in as group
     newgrp nix-users
 
-    nix-channel --add https://nixos.org/channels/nixos-unstable unstable
+    nix-channel --add https://nixos.org/channels/nixos-unstable nixpkgs
     nix-channel --update
 
     # echo 'experimental-features = nix-command flakes' >> /etc/nix/nix.conf
