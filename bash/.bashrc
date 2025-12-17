@@ -2,7 +2,7 @@
 
 # Source global definitions on redhat based systems
 # Debian calls these /etc/bash.bashrc, so won't source it.
-# On Debian /etc/bash.bashrc copied to user and overriden
+# On Debian /etc/bash.bashrc copied to user and overridden
 # instead of chaining. So we don't do anything.
 if [[ -f /etc/bashrc ]]; then
     . /etc/bashrc
