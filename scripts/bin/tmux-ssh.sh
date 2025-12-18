@@ -25,7 +25,7 @@ setup_vars() {
 }
 
 main() {
-    setup_vars
+    setup_vars "$@"
     setup_tmux
 }
 
