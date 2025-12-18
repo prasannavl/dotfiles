@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 sudo mkdir -p /etc/systemd/system/keyd.service.d
 cat <<-END | sudo tee /etc/systemd/system/keyd.service.d/default.conf

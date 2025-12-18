@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -x
 file=/boot/efi/EFI/fedora/grub.cfg

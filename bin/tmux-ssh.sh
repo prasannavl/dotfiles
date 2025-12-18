@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # a script to ssh multiple servers over multiple tmux panes
 

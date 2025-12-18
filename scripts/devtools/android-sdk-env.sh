@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 android_sdk=$HOME/Android/Sdk
 if [[ -d "$android_sdk" ]]; then

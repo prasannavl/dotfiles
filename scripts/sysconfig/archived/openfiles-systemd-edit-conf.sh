@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 files="/etc/systemd/user.conf /etc/systemd/system.conf"
 val=${1:-1048576}

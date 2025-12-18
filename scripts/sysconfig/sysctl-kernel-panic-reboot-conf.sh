@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cat <<END | sudo tee /etc/sysctl.d/90-kernel-panic.conf && sudo sysctl --system
 kernel.panic_on_oops=1

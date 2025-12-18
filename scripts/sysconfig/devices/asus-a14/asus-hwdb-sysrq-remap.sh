@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 HWDB_PATH="/etc/udev/hwdb.d/90-sysrq-at-remap.hwdb"
 sudo mkdir -p $(dirname $HWDB_PATH)

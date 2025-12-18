@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cat <<END | sudo tee /etc/security/limits.d/40-open-files.conf
 *     -  nofile 1048576

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 conf_dirs="/etc/systemd/system.conf.d /etc/systemd/user.conf.d"
 filename="40-open-files.conf"

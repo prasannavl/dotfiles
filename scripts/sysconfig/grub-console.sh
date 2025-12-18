@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cat <<END | sudo tee /etc/default/grub.d/10-console.cfg
 # Enable console framebuffer on first VGA device / first monitor

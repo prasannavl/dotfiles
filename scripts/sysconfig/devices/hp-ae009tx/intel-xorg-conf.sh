@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cat <<EOF | sudo tee /usr/share/X11/xorg.conf.d/20-intel.conf
 Section "Device"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -Eeuo pipefail
 
 log() { printf '%s\n' "$*" | systemd-cat -t niri-session || printf '[niri-session] %s\n' "$*"; }

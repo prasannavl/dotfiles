@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cat <<END | sudo tee /etc/sudoers.d/10-timeout
 # timeout minutes for asking password again

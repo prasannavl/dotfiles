@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # This script sets up NVIDIA prime offload variables
 # when sourced.

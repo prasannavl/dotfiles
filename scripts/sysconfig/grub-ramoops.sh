@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cat <<END | sudo tee /etc/default/grub.d/50-ramoops.cfg
 # 1mb of ramoops memory, 64kb records, 32kb console

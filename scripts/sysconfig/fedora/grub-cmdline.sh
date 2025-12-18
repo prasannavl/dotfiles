@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 file=/etc/default/grub
 OPTS="rhgb quiet acpi_osi=Linux fbcon=scrollback:4096k"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 file=/etc/ssh/sshd_config
 val=${1:-clientspecified}

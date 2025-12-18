@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cat <<END | sudo tee /etc/sysctl.d/40-inotify.conf && sudo sysctl --system
 fs.inotify.max_queued_events=16384

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cat <<END  | sudo tee /usr/share/X11/xorg.conf.d/10-synaptics-disable.conf
 # Disable generic Synaptics device

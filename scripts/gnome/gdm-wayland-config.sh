@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 val=${1:-false}
 m='^#?\s*(WaylandEnable=)(.*)$'

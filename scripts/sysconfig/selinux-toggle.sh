@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 file=/etc/selinux/config
 val=${1:-permissive}

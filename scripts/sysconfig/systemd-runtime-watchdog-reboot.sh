@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 sudo mkdir -p /etc/systemd/system.conf.d
 cat <<END | sudo tee /etc/systemd/system.conf.d/10-watchdog.conf && sudo systemctl daemon-reload

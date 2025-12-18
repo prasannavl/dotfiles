@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cat <<EOF | sudo tee /etc/systemd/system/hp-keycodes-fix.service && sudo systemctl enable hp-keycodes-fix
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cat <<EOF | sudo tee /etc/modprobe.d/intel-i915.conf
 options i915 enable_psr=0

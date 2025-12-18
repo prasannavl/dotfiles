@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 cat <<END | sudo tee /etc/systemd/system/efi-nextboot.service && sudo systemctl daemon-reload && sudo systemctl enable efi-nextboot
 [Unit]

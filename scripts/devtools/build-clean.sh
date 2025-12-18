@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Recursive build cleaner
 
 set -Eeuo pipefail

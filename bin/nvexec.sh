@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Nvidia optimus
 # https://download.nvidia.com/XFree86/Linux-x86_64/440.82/README/primerenderoffload.html
