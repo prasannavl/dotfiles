@@ -1,3 +1,0 @@
-vars() {
-    LINKS=(bin)
-}

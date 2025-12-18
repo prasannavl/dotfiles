@@ -1,3 +1,5 @@
+#!/bin/sh
+
 function git_sparse_clone() (
   rurl="$1" localdir="$2" && shift 2
 

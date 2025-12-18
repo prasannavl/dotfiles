@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 set -Eeuo pipefail
 
 log() { printf '%s\n' "$*" | systemd-cat -t sway-session || printf '[sway-session] %s\n' "$*"; }
