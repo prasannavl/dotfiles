@@ -159,6 +159,20 @@ link() {
 
     local item_src
     local item_t
+
+    # Special case for linking parent dir
+    if [[ "${links[@]}" == "@parent" ]]; then
+        local item_base="$(basename "$(pwd)")"
+        item_t="$target/$item_base"
+        sanity_check_link "$item_base" "$item_t"
+        item_src="$(pwd)"
+        echo "ln: $item_t -> $item_src"
+        ln $link_opts -ns "$item_src" "$item_t"
+        
+        post_link
+        return
+    fi
+
     for x in "${links[@]}"; do
         item_t="$target/$x"
         sanity_check_link "$x" "$item_t"
@@ -173,6 +187,17 @@ unlink() {
     pre_unlink
     local target="$TARGET"
     local links=("${LINKS[@]}")
+
+    # Special case for linking parent dir
+    if [[ "${links[@]}" == "@parent" ]]; then
+        local item_base="$(basename "$(pwd)")"
+        echo "rm: $target/$item_base"
+        rm -f "$target/$item_base"
+        
+        post_unlink
+        return
+    fi
+
     for x in "${links[@]}"; do
         echo "rm: $target/$x"
         rm -f "$target/$x"
