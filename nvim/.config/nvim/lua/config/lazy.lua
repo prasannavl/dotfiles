@@ -24,21 +24,21 @@ require("lazy").setup({
         { "tpope/vim-fugitive" }, -- git
         { "sindrets/diffview.nvim" }, -- git diffview
 
+        -- ai
+        {
+            "olimorris/codecompanion.nvim",
+            opts = {},
+            dependencies = {
+                "nvim-lua/plenary.nvim",
+                "nvim-treesitter/nvim-treesitter",
+            },
+        },
+
         -- lang stuff
 
         { "NoahTheDuke/vim-just", lazy = true },
         { "IndianBoy42/tree-sitter-just", lazy = true },
-
         -- todo
-
-        -- {
-        --     "olimorris/codecompanion.nvim",
-        --     opts = {},
-        --     dependencies = {
-        --         "nvim-lua/plenary.nvim",
-        --         "nvim-treesitter/nvim-treesitter",
-        --     },
-        -- },
 
         -- { "epwalsh/obsidian.nvim" },
         -- { "preservim/vim-pencil" },
