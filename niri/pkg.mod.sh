@@ -1,5 +1,5 @@
 vars() {
-    LINKS=()
+    LINKS=(.config/niri)
     PKGS=()
 }
 
