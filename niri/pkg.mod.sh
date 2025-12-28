@@ -8,7 +8,7 @@ check_install() {
 }
 
 install() {
-    nix profile install nixpkgs#niri
+    nix profile add nixpkgs#niri
 }
 
 post_link() {
