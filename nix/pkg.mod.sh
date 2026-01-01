@@ -1,4 +1,5 @@
 vars() {
+    LINKS=(.config/nix)
     BASH_COMPLETIONS_DIR=$HOME/.bashrc.d/completions
     case $DISTRO in
         ubuntu|debian) PKGS=(nix-bin);;
@@ -43,10 +44,6 @@ END
     sudo nix-channel --add https://nixos.org/channels/nixos-25.11 nixpkgs
     # sudo nix-channel --add https://nixos.org/channels/nixos-unstable unstable
     sudo nix-channel --update
-
-    # echo 'experimental-features = nix-command flakes' >> /etc/nix/nix.conf
-    mkdir -p "$HOME/.config/nix"
-    echo 'experimental-features = nix-command flakes' >> "$HOME/.config/nix/nix.conf"
 
     # install nix pkg itself
 }
