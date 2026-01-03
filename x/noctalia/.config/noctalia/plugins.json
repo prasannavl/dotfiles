@@ -1,0 +1,27 @@
+{
+    "sources": [
+        {
+            "enabled": true,
+            "name": "Official Noctalia Plugins",
+            "url": "https://github.com/noctalia-dev/noctalia-plugins"
+        }
+    ],
+    "states": {
+        "catwalk": {
+            "enabled": false
+        },
+        "launcher-button": {
+            "enabled": true
+        },
+        "mini-docker": {
+            "enabled": true
+        },
+        "network-indicator": {
+            "enabled": false
+        },
+        "privacy-indicator": {
+            "enabled": false
+        }
+    },
+    "version": 1
+}
