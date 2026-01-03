@@ -1,5 +1,5 @@
 vars() {
-    LINKS=(".config/nvim")
+    LINKS=(.config/nvim)
     PKGS=(neovim)
 }
 
