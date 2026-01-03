@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Niri
+Comment=A scrollable-tiling Wayland compositor
+Exec=bash -l niri-session.sh
+Type=Application
+DesktopNames=niri
+Environment=wayland
+

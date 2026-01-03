@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Sway Session
+Comment=Start Sway via sway-session
+Exec=bash -l sway-session.sh
+TryExec=sway
+Type=Application
+DesktopNames=sway
+Environment=wayland
