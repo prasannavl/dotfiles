@@ -1,0 +1,12 @@
+file:/// /
+file:///home/pvl/Documents
+file:///home/pvl/Downloads
+file:///home/pvl/Music
+file:///home/pvl/Pictures
+file:///home/pvl/Videos
+file:///home/pvl/.config .config
+file:///home/pvl/.local .local
+file:///home/pvl/src src
+file:///home/pvl/tmp tmp
+file:///home/pvl/spaces/llmug llmug
+sftp://pvl-x2/home/pvl ssh:pvl-x2/pvl
