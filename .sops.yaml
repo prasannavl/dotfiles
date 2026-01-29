@@ -1,0 +1,11 @@
+keys:
+  - &pvl ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIAAsB0nJcxF0wjuzXK0VTF1jbQbT24C1MM8NesCuwBb
+creation_rules:
+  - path_regex: x/shikane/.config/shikane/config\.toml$
+    key_groups:
+      - age: 
+        - *pvl
+  - path_regex: x/gnome-shell/.config/monitors\.xml$
+    key_groups:
+      - age: 
+        - *pvl
