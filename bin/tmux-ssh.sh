@@ -1,7 +1,19 @@
 #!/usr/bin/env bash
 
-# a script to ssh multiple servers over multiple tmux panes
+NIX_DEPS="nixpkgs#bash nixpkgs#coreutils nixpkgs#openssh nixpkgs#tmux"
 
+ensure_nix_shell() {
+    [ -n "${NIX_SHELL:-}" ] && return 0
+    command -v nix >/dev/null 2>&1 || return 0
+    [ -n "${NIX_DEPS:-}" ] || return 0
+
+    export NIX_SHELL=1
+    # shellcheck disable=SC2086
+    exec nix shell $NIX_DEPS --command "${BASH:-sh}" "$0" "$@"
+}
+ensure_nix_shell "$@"
+
+# a script to ssh multiple servers over multiple tmux panes
 setup_tmux() {
     if [ -z "$HOSTS" ]; then
        echo -n "Please provide of list of hosts separated by spaces [ENTER]: "

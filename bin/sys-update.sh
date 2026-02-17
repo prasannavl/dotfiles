@@ -1,7 +1,19 @@
 #!/usr/bin/env bash
 
-set -Eeuo pipefail
+NIX_DEPS="nixpkgs#bash nixpkgs#coreutils nixpkgs#curl nixpkgs#dmidecode nixpkgs#flatpak nixpkgs#fwupd nixpkgs#gnugrep nixpkgs#htmlq nixpkgs#nix nixpkgs#nvidia-settings nixpkgs#pup nixpkgs#sudo"
 
+ensure_nix_shell() {
+    [ -n "${NIX_SHELL:-}" ] && return 0
+    command -v nix >/dev/null 2>&1 || return 0
+    [ -n "${NIX_DEPS:-}" ] || return 0
+
+    export NIX_SHELL=1
+    # shellcheck disable=SC2086
+    exec nix shell $NIX_DEPS --command "${BASH:-sh}" "$0" "$@"
+}
+ensure_nix_shell "$@"
+
+set -Eeuo pipefail
 function main() {
     setup_vars
     run_pre
