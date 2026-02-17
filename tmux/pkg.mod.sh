@@ -1,7 +1,7 @@
 vars() {
-    TMUX_PLUGIN_DIR="$HOME/.tmux/plugins"
+    TMUX_PLUGIN_DIR="$HOME/.config/tmux/plugins"
     TMUX_TPM_DIR="$TMUX_PLUGIN_DIR/tpm"
-    LINKS=(.tmux.conf)
+    LINKS=(.config)
     PKGS=(tmux)
 }
 
